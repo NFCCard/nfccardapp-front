@@ -17,6 +17,7 @@ import {
 	CursorPoiner,
 	Cards,
 } from "components";
+
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import Lottie from "react-lottie";
@@ -24,7 +25,6 @@ import { EffectCards, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useLogin } from "hooks/Auth/useAuth";
 import { useAuth } from "hooks/Auth/useAuth";
-import { constants } from "values";
 import Image from "next/image";
 import MainLayout from "layout/MainLayout";
 
@@ -301,12 +301,12 @@ export async function getStaticProps() {
 				"به نظرم کارتی برای افرادی که میخوان خودشون و حرفشونو حرفه ای و با کلاس به بقیه معرفی کنند",
 			avatar: ali,
 		},
-		// {
-		// 	id: 2,
-		// 	name: "Arash Mokhtari",
-		// 	content: "",
-		// 	avatar: arash,
-		// },
+		{
+			id: 2,
+			name: "Arash Mokhtari",
+			content: "",
+			avatar: arash,
+		},
 		{
 			id: 3,
 			name: "Sara Ghaderi",
@@ -322,6 +322,7 @@ export async function getStaticProps() {
 			avatar: hosein,
 		},
 	];
+
 	return {
 		props: {
 			reviews,

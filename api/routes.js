@@ -1,18 +1,11 @@
 import { config } from "values";
 
 const auth = {
-	login: `${config.BASE_URL}api/auth/login`,
-	register: `${config.BASE_URL}api/auth/register`,
-	logout: `${config.BASE_URL}api/auth/logout`,
+	login: `${config.BASE_URL}login`,
 };
 
-const profile = {
-	getSingleProfile: `${config.BASE_URL}api/user`,
-};
-const admin = {
-	getUserList: `${config.BASE_URL}api/admin/users`,
-	storeUser: `${config.BASE_URL}api/admin/users`,
-};
+const profile = {};
+const admin = {};
 
 const routes = { auth, profile, admin };
 
