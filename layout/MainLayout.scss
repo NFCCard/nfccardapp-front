@@ -1,0 +1,31 @@
+.MainLayout {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background-color: $dark-color;
+	.header {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		flex-shrink: 0;
+		z-index: 10;
+	}
+
+	main {
+		flex-grow: 1;
+	}
+	.footer {
+		height: 50px;
+		color: $white-color;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+body[dir="rtl"] .footer {
+	height: 50px;
+	color: $white-color;
+	text-align: center;
+}

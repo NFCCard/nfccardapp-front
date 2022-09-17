@@ -1,0 +1,29 @@
+.pointer-wrapper {
+	position: relative;
+	transition: all 2s linear;
+	animation: cursorPointer 2s infinite;
+	z-index: 10;
+	width: 50px;
+	.cursor-ponter {
+		top: 250px;
+		right: 0%;
+		transform: translateX(-40%);
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		fill: rgba($color: $white-color, $alpha: 0.8);
+	}
+}
+@keyframes cursorPointer {
+	0% {
+		right: 40%;
+	}
+
+	50% {
+		right: 50%;
+	}
+
+	100% {
+		right: 40%;
+	}
+}

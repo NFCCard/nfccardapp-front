@@ -1,0 +1,201 @@
+.Hero {
+	width: 100%;
+	height: 100vh;
+	background-color: $dark-color;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	color: $white-color;
+	text-align: center;
+	position: relative;
+	z-index: 4;
+	.info-wrapper {
+		margin-top: 40px;
+		z-index: 10;
+	}
+	@media (min-width: 767px) {
+		.info-wrapper {
+			margin-top: 200px;
+		}
+	}
+	@media (min-width: 1399px) {
+		text-align: left;
+	}
+	.intro {
+		padding: 3rem;
+		h1 {
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+		p {
+			font-size: 1rem;
+		}
+	}
+	@media (min-width: 767px) {
+		.intro {
+			padding: 5rem;
+
+			h1 {
+				font-size: 2rem;
+				font-weight: bold;
+			}
+			p {
+				font-size: 1.3rem;
+			}
+		}
+	}
+	.cards-wrapper {
+		direction: ltr;
+		overflow: hidden;
+		img {
+			width: 500px;
+			height: 200px;
+			border-radius: 12px;
+		}
+		.swiper {
+			width: 240px;
+			height: 400px;
+		}
+		@media (min-width: 767px) {
+			overflow: unset;
+
+			.swiper {
+				width: 500px;
+				height: 500px;
+			}
+		}
+
+		.swiper-slide {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 22px;
+			color: #fff;
+		}
+
+		.swiper-3d .swiper-slide-shadow {
+			background-color: transparent;
+		}
+	}
+
+	svg {
+		background: 0 0 !important;
+		vertical-align: middle;
+		fill: #fff;
+		z-index: 10;
+	}
+	video {
+		z-index: 2;
+		position: absolute;
+		height: 100vh;
+		width: 100%;
+		object-fit: cover;
+		top: 0%;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	.video-overlay {
+		position: absolute;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 4;
+		background-color: rgba($color: $dark-color, $alpha: 0.8);
+	}
+}
+// rtl hero
+body[dir="rtl"] .Hero {
+	@media (min-width: 1399px) {
+		text-align: right;
+	}
+}
+
+.second-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
+	background-color: #fff;
+	position: relative;
+	.info-wrapper {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		h4 {
+			font-size: 1.2rem;
+			font-weight: bold;
+		}
+		p {
+			font-size: 1rem;
+			padding: 0 2rem;
+		}
+		@media (min-width: 767px) {
+			h4 {
+				font-size: 2rem;
+				font-weight: bold;
+			}
+			p {
+				font-size: 1.3rem;
+				padding: 0 2rem;
+			}
+		}
+	}
+
+	.wave {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		fill: $dark-color;
+	}
+}
+.third-section {
+	height: 80vh;
+	.info-wrapper {
+		text-align: center;
+		padding: 0 2rem;
+		h4 {
+			font-size: 1.2rem;
+			font-weight: bold;
+			color: $white-color;
+		}
+		p {
+			font-size: 1rem;
+			color: $white-color;
+		}
+		@media (min-width: 767px) {
+			h4 {
+				font-size: 2rem;
+				font-weight: bold;
+				color: $white-color;
+			}
+			p {
+				font-size: 1.2rem;
+				color: $white-color;
+			}
+		}
+	}
+}
+.review-section {
+	h3 {
+		color: $white-color;
+		font-size: 2rem;
+		font-weight: bold;
+		text-align: center;
+		padding-bottom: 20px;
+	}
+}
+.mySwiper2 {
+	direction: ltr;
+}
+
+.lottie-wrapper {
+	position: relative;
+	width: 300px;
+	margin: 0 auto;
+	@media (min-width: 767px) {
+		width: 400px;
+	}
+}
