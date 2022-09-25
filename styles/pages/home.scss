@@ -10,7 +10,7 @@
 	position: relative;
 	z-index: 4;
 	.info-wrapper {
-		margin-top: 40px;
+		margin-top: 200px;
 		z-index: 10;
 	}
 	@media (min-width: 767px) {
@@ -48,17 +48,14 @@
 		direction: ltr;
 		overflow: hidden;
 		img {
-			width: 500px;
-			height: 200px;
 			border-radius: 12px;
 		}
 		.swiper {
-			width: 240px;
+			width: 300px;
 			height: 400px;
 		}
-		@media (min-width: 767px) {
+		@media (min-width: 1024px) {
 			overflow: unset;
-
 			.swiper {
 				width: 500px;
 				height: 500px;
@@ -69,8 +66,6 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			font-size: 22px;
-			color: #fff;
 		}
 
 		.swiper-3d .swiper-slide-shadow {
@@ -83,6 +78,12 @@
 		vertical-align: middle;
 		fill: #fff;
 		z-index: 10;
+		display: none;
+	}
+	@media (min-width: 767px) {
+		svg {
+			display: block;
+		}
 	}
 	video {
 		z-index: 2;

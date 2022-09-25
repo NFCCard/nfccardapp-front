@@ -1,6 +1,6 @@
 .review-card {
 	@include glass();
-	min-height: 200px;
+	height: 350px;
 	width: 100%;
 	padding: 1rem;
 	color: $white-color;
@@ -24,7 +24,6 @@
 		}
 		.description {
 			direction: rtl;
-			text-overflow: ellipsis;
 			text-align: right;
 		}
 	}

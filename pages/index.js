@@ -8,6 +8,8 @@ import ali from "public/assets/images/ali.jpg";
 import sara from "public/assets/images/sara.jpg";
 import hosein from "public/assets/images/hosein.jpg";
 import arash from "public/assets/images/arash.jpg";
+import saba from "public/assets/images/saba.jpg";
+import mamad from "public/assets/images/mamad.jpg";
 import {
 	BlobButton,
 	FloatingButton,
@@ -28,7 +30,50 @@ import { useAuth } from "hooks/Auth/useAuth";
 import Image from "next/image";
 import MainLayout from "layout/MainLayout";
 
-const Home = ({ reviews }) => {
+const Home = () => {
+	const reviews = [
+		{
+			id: 1,
+			name: "Ali Houshangi",
+			content:
+				"به نظرم کارتی برای افرادی که میخوان خودشون و حرفشونو حرفه ای و با کلاس به بقیه معرفی کنند",
+			avatar: ali,
+		},
+		{
+			id: 2,
+			name: "Arash Mokhtari",
+			content: "کار حرفه ای لزومش معرفی حرفه ایه! با این کارت خیلی راحت تر شده معرفی کردن.",
+			avatar: arash,
+		},
+		{
+			id: 3,
+			name: "Sara Ghaderi",
+			content:
+				"اینکه توی سریع ترین حالت میتونیم اطلاعاتمون رو به اشتراک بزاریم کار هامون رو سریع تر پیش میبره مطمئنا از کاربردی ترین روش های اشتراک گذاری هستش من راضی ام‌ بابت داشتن همچین کارتی🙌🏻",
+			avatar: sara,
+		},
+		{
+			id: 4,
+			name: "Hosein Ghanbari",
+			content:
+				"من این کارت رو خریدم و واقعا ازش راضیم چون خیلی راحت تر میتونم اطلاعاتی که میخوام رو در اختیار بقیه بذارم. این روش جدید خیلی کار رو سریع تر و حرفه ای تر میکنه!",
+			avatar: hosein,
+		},
+		{
+			id: 5,
+			name: "Saba Kamalipour",
+			content:
+				"واسه کسایی که تو شبکه های مجازی فعالیت میکنن واقعا عالیه بچه ها پیشنهاد میشه 👏💜 ",
+			avatar: saba,
+		},
+		{
+			id: 6,
+			name: "Mohammad Mortezavi",
+			content:
+				"خوبیش اینه که هم اسمت تو گوگل میاد هم هرموقع خواستی راحت میتونی اطلاعاتتو آپدیت کنی!",
+			avatar: mamad,
+		},
+	];
 	const [isLtr, setIsLtr] = useState();
 	const [showTooltip, setShowTooltip] = useState(true);
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -68,12 +113,12 @@ const Home = ({ reviews }) => {
 	};
 
 	const loginHandler = (val) => {
-		loginMutate(val);
+		// loginMutate(val);
+		console.log(val);
 	};
 	const floatingButtonOnClick = () => {
 		if (!isUserLoggedIn) {
-			setIsLoginModalOpen(true);
-			return;
+			return setIsLoginModalOpen(true);
 		}
 		// navigate(`/${Cookies.get(constants.INFO)}`);
 	};
@@ -84,7 +129,7 @@ const Home = ({ reviews }) => {
 				<div className='Hero'>
 					<div className='container info-wrapper'>
 						<div className='row align-items-center'>
-							<div className='col-12 col-md-6'>
+							<div className='col-12 col-lg-6'>
 								<div className='intro'>
 									<h1>
 										با <span className='color-orange'>NFC Card</span> حرفه ای تر
@@ -93,7 +138,7 @@ const Home = ({ reviews }) => {
 									<p>برای آغاز هر همکاری، معرفی درست حرف اول را می زند!</p>
 								</div>
 							</div>
-							<div className='col-12 col-md-6'>
+							<div className='col-12 col-lg-6'>
 								{/* <Cards /> */}
 								<div className='position-relative'>
 									<CursorPoiner show={showTooltip} />
@@ -152,7 +197,7 @@ const Home = ({ reviews }) => {
 						<path d='M0,0 C16.6666667,66 33.3333333,99 50,99 C66.6666667,99 83.3333333,66 100,0 L100,100 L0,100 L0,0 Z'></path>
 					</svg>
 					<video muted loop autoPlay>
-						<source src='public/assets/heroVideo.mp4' />
+						<source src='assets/heroVideo.mp4' />
 					</video>
 					<div className='video-overlay'></div>
 				</div>
@@ -224,11 +269,8 @@ const Home = ({ reviews }) => {
 					<h3>
 						نظرات <span className='color-orange'>مشتریان</span>
 					</h3>
+
 					<Swiper
-						loop={true}
-						pagination={{
-							clickable: true,
-						}}
 						slidesPerView={4}
 						spaceBetween={40}
 						breakpoints={{
@@ -291,43 +333,5 @@ const Home = ({ reviews }) => {
 		</MainLayout>
 	);
 };
-
-export async function getStaticProps() {
-	const reviews = [
-		{
-			id: 1,
-			name: "Ali Houshangi",
-			content:
-				"به نظرم کارتی برای افرادی که میخوان خودشون و حرفشونو حرفه ای و با کلاس به بقیه معرفی کنند",
-			avatar: ali,
-		},
-		{
-			id: 2,
-			name: "Arash Mokhtari",
-			content: "",
-			avatar: arash,
-		},
-		{
-			id: 3,
-			name: "Sara Ghaderi",
-			content:
-				"اینکه توی سریع ترین حالت میتونیم اطلاعاتمون رو به اشتراک بزاریم کار هامون رو سریع تر پیش میبره مطمئنا از کاربردی ترین روش های اشتراک گذاری هستش من راضی ام‌ بابت داشتن همچین کارتی🙌🏻",
-			avatar: sara,
-		},
-		{
-			id: 4,
-			name: "Hosein Ghanbari",
-			content:
-				"من این کارت رو خریدم و واقعا ازش راضیم چون خیلی راحت تر میتونم اطلاعاتی که میخوام رو در اختیار بقیه بذارم. این روش جدید خیلی کار رو سریع تر و حرفه ای تر میکنه!",
-			avatar: hosein,
-		},
-	];
-
-	return {
-		props: {
-			reviews,
-		},
-	};
-}
 
 export default Home;

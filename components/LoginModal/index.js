@@ -29,7 +29,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 						}}
 					>
 						{({ errors, touched }) => (
-							<Form>
+							<Form autoComplete='off'>
 								<div className='form-floating input-wrapper w-100'>
 									<Field
 										className='form-control '

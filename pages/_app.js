@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
 				caches: ["cookie"],
 			},
 			backend: {
-				loadPath: "public/locales/{{lng}}/translation.json",
+				loadPath: "locales/{{lng}}/translation.json",
 			},
 		});
 	const queryClient = new QueryClient();
