@@ -22,12 +22,13 @@ import * as animationData2 from "public/assets/lf30_editor_h64eijlm.json";
 import { useAuth, useLogin } from "hooks/Auth/useAuth";
 import Cookies from "js-cookie";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import { EffectCards, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { constants } from "values";
 import Head from "next/head";
+import { AppContext } from "../context/AppContextProvider";
 
 const Home = () => {
 	const reviews = [
@@ -77,7 +78,7 @@ const Home = () => {
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 	const { mutate: loginMutate, isLoading: loginIsLoading, status: loginStatus } = useLogin();
 	const { isUserLoggedIn } = useAuth();
-
+	const { storage, setStorage } = useContext(AppContext);
 	useEffect(() => {
 		if (loginStatus === "success") {
 			setIsLoginModalOpen(false);
@@ -301,7 +302,7 @@ const Home = () => {
 				<FloatingButton
 					position={{ top: "50%", left: "auto", right: "-30px", bottom: "0" }}
 					backgroundColor='#ff652f'
-					link={`${JSON.parse(Cookies.get(constants.INFO)).username}`}
+					link={`${storage.userInfo.username}`}
 				>
 					<i className='fas fa-user usericon'></i>
 				</FloatingButton>

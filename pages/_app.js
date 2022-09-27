@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import "styles/globals.scss";
 import Head from "next/head";
 import { useEffect } from "react";
+import AppContextProvider from "../context/AppContextProvider";
 
 function MyApp({ Component, pageProps }) {
 	const queryClient = new QueryClient();
@@ -19,23 +20,25 @@ function MyApp({ Component, pageProps }) {
 			<Head>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 			</Head>
-			<QueryClientProvider client={queryClient}>
-				<MainLayout>
-					<Component {...pageProps} />
-					<ToastContainer
-						position='top-right'
-						theme='dark'
-						autoClose={5000}
-						hideProgressBar={false}
-						newestOnTop={false}
-						closeOnClick
-						rtl={false}
-						pauseOnFocusLoss
-						draggable
-						pauseOnHover
-					/>
-				</MainLayout>
-			</QueryClientProvider>
+			<AppContextProvider>
+				<QueryClientProvider client={queryClient}>
+					<MainLayout>
+						<Component {...pageProps} />
+						<ToastContainer
+							position='top-right'
+							theme='dark'
+							autoClose={5000}
+							hideProgressBar={false}
+							newestOnTop={false}
+							closeOnClick
+							rtl={false}
+							pauseOnFocusLoss
+							draggable
+							pauseOnHover
+						/>
+					</MainLayout>
+				</QueryClientProvider>
+			</AppContextProvider>
 		</>
 	);
 }

@@ -1,15 +1,18 @@
 import api from "api";
 import { Toastify } from "components";
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { constants } from "values";
+import { AppContext } from "../../context/AppContextProvider";
 
 const useAuth = () => {
 	let [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
+	const { storage, setStorage } = useContext(AppContext);
+
 	useEffect(() => {
-		if (Cookies.get(constants.TOKEN) && Cookies.get(constants.INFO)) {
+		if (storage.accessToken && storage.userInfo) {
 			setIsLoading(false);
 			return setIsUserLoggedIn(true);
 		} else {
@@ -21,19 +24,19 @@ const useAuth = () => {
 	return { isUserLoggedIn, isLoading };
 };
 const useLogin = () => {
+	const { storage, setStorage } = useContext(AppContext);
+
 	return useMutation(api.post.login, {
 		onError: (error, variables, context) => {
 			// An error happened!
 			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
-			Cookies.set(constants.TOKEN, data.access_token, {
-				expires: new Date().getFullYear(),
-			});
-			Cookies.set(constants.INFO, JSON.stringify(data.user), {
-				expires: new Date().getFullYear(),
-			});
-
+			setStorage((prev) => ({
+				...prev,
+				accessToken: data.access_token,
+				userInfo: data.user,
+			}));
 			Toastify("success", "با موفقیت وارد شدید");
 		},
 	});
@@ -47,7 +50,10 @@ const useLogout = () => {
 			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
-			Cookies.remove(constants.TOKEN);
+			setStorage((prev) => ({
+				...prev,
+				accessToken: "",
+			}));
 			Toastify("success", "با موفقیت خارج شدید");
 		},
 	});

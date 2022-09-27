@@ -4,12 +4,13 @@ import { useAuth, useLogin } from "hooks/Auth/useAuth";
 import Cookies from "js-cookie";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { constants, icons } from "values";
 import { socialMediaColors } from "values/colors";
 import { useCreateVcf } from "../../hooks/User/useVCF";
 import defaultAvatar from "/public/assets/images/user.png";
 import { config } from "values";
+import { AppContext } from "../../context/AppContextProvider";
 
 const Profile = ({ data }) => {
 	const [user, setUser] = useState();
@@ -19,11 +20,9 @@ const Profile = ({ data }) => {
 	const { mutate: vcfMutate, isLoading: isVcfLoading, status: vcfStatus } = useCreateVcf();
 	const { isUserLoggedIn } = useAuth();
 	const router = useRouter();
+	const { storage, setStorage } = useContext(AppContext);
 
 	useEffect(() => {
-		if (data === 404) {
-			return router.push("/404");
-		}
 		setUser(data?.data.profile);
 		console.log({ data });
 	}, [data]);
@@ -45,7 +44,7 @@ const Profile = ({ data }) => {
 			setIsLoginModalOpen(true);
 			return;
 		}
-		router.push(`/${JSON.parse(Cookies.get(constants.INFO)).username}/edit`);
+		router.push(`/${storage.userInfo.username}/edit`);
 	};
 
 	return (
@@ -168,7 +167,7 @@ const Profile = ({ data }) => {
 						) : null}
 					</main>
 
-					{router.query.username === JSON.parse(Cookies.get(constants.INFO)).username && (
+					{storage.userInfo && router.query.username === storage.userInfo.username && (
 						<>
 							<FloatingButton
 								onClick={floatingButtonOnClick}

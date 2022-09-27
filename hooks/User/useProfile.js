@@ -9,7 +9,7 @@ const useGetProfile = (username) => {
 	);
 	return { data, isLoading, status, refetch };
 };
-const useGetProfileMutate = (username) => {
+const useGetProfileMutate = () => {
 	return useMutation((username) => api.get.getSingleProfile({ username }), {
 		onError: (error, variables, context) => {
 			// An error happened!
@@ -18,20 +18,16 @@ const useGetProfileMutate = (username) => {
 		onSuccess: (data, variables, context) => {},
 	});
 };
+const useUpdateProfile = () => {
+	return useMutation(({ id, formData }) => api.patch.updateProfile({ id, formData }), {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", error.response.data.message);
+		},
+		onSuccess: (data, variables, context) => {
+			Toastify("success", "اطلاعات با موفقیت آپدیت شد");
+		},
+	});
+};
 
-// const useCheckUsername = (username) => {
-// 	return useMutation((username) => api.get.getSingleProfile({ username }), {
-// 		onError: (error, variables, context) => {
-// 			// An error happened!
-// 			if (error.response.status === 404) {
-// 				Toastify("success", "نام کاربری مجاز", "valid_username");
-// 			}
-// 			console.clear();
-// 		},
-// 		onSuccess: (data, variables, context) => {
-// 			Toastify("error", "نام کاربری مجاز نیست", "invalid_username");
-// 		},
-// 	});
-// };
-
-export { useGetProfile, useGetProfileMutate };
+export { useGetProfile, useGetProfileMutate, useUpdateProfile };

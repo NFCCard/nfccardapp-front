@@ -43,7 +43,16 @@ const SpanButton = styled.span`
 	}
 `;
 
-const FloatingButton = ({ onClick, type, children, position, backgroundColor, isSpan, link }) => {
+const FloatingButton = ({
+	onClick,
+	type,
+	children,
+	position,
+	backgroundColor,
+	isSpan,
+	link,
+	isDisabled,
+}) => {
 	return (
 		<>
 			{isSpan && (
@@ -76,6 +85,7 @@ const FloatingButton = ({ onClick, type, children, position, backgroundColor, is
 					onClick={onClick}
 					position={position}
 					className='floatingButton'
+					disabled={isDisabled}
 					backgroundColor={backgroundColor}
 				>
 					{children}

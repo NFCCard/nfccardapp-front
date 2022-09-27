@@ -12,3 +12,4 @@ export { default as LanguageChanger } from "./LanguageChanger";
 export { default as Loading } from "./Loading";
 export { default as CursorPoiner } from "./CursorPointer";
 export { default as Toastify } from "./Toastify";
+export { default as Spinner } from "./Spinner";
