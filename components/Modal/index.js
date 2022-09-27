@@ -4,16 +4,13 @@ import { CSSTransition } from "react-transition-group";
 import useClickOutside from "hooks/customs/useClickedOutSide";
 function Modal({ children, isOpen, disableBackdropClose, onClose, title, className, ...attr }) {
 	const [mounted, setMounted] = useState(false);
+	const modalRef = useRef(null);
+	
+	useClickOutside(modalRef, onClose);
 
 	useEffect(() => {
 		setMounted(true);
-
-		return () => setMounted(false);
 	}, []);
-
-	const modalRef = useRef(null);
-
-	useClickOutside(modalRef, onClose);
 
 	if (mounted) {
 		const modalRoot = document.getElementById("portal");

@@ -1,34 +1,33 @@
-import * as animationData from "public/assets/earth-love-earth-day.json";
-import * as animationData2 from "public/assets/lf30_editor_h64eijlm.json";
-import image1 from "public/assets/images/card1.png";
-import image2 from "public/assets/images/card2.png";
-import image3 from "public/assets/images/card3.png";
-import image4 from "public/assets/images/card4.png";
-import ali from "public/assets/images/ali.jpg";
-import sara from "public/assets/images/sara.jpg";
-import hosein from "public/assets/images/hosein.jpg";
-import arash from "public/assets/images/arash.jpg";
-import saba from "public/assets/images/saba.jpg";
-import mamad from "public/assets/images/mamad.jpg";
 import {
 	BlobButton,
+	CursorPoiner,
 	FloatingButton,
 	LoginModal,
 	Modal,
 	ReviewCard,
-	CursorPoiner,
-	Cards,
 } from "components";
+import * as animationData from "public/assets/earth-love-earth-day.json";
+import ali from "public/assets/images/ali.jpg";
+import arash from "public/assets/images/arash.jpg";
+import image1 from "public/assets/images/card1.png";
+import image2 from "public/assets/images/card2.png";
+import image3 from "public/assets/images/card3.png";
+import image4 from "public/assets/images/card4.png";
+import hosein from "public/assets/images/hosein.jpg";
+import mamad from "public/assets/images/mamad.jpg";
+import saba from "public/assets/images/saba.jpg";
+import sara from "public/assets/images/sara.jpg";
+import * as animationData2 from "public/assets/lf30_editor_h64eijlm.json";
 
+import { useAuth, useLogin } from "hooks/Auth/useAuth";
 import Cookies from "js-cookie";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import { EffectCards, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useLogin } from "hooks/Auth/useAuth";
-import { useAuth } from "hooks/Auth/useAuth";
-import Image from "next/image";
-import MainLayout from "layout/MainLayout";
+import { constants } from "values";
+import Head from "next/head";
 
 const Home = () => {
 	const reviews = [
@@ -74,20 +73,10 @@ const Home = () => {
 			avatar: mamad,
 		},
 	];
-	const [isLtr, setIsLtr] = useState();
 	const [showTooltip, setShowTooltip] = useState(true);
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 	const { mutate: loginMutate, isLoading: loginIsLoading, status: loginStatus } = useLogin();
 	const { isUserLoggedIn } = useAuth();
-	useEffect(() => {
-		Cookies.set("i18next", "fas");
-		document.querySelector("body").dir = "rtl";
-		if (document.querySelector("body").dir === "ltr") {
-			setIsLtr(true);
-		} else {
-			setIsLtr(false);
-		}
-	}, []);
 
 	useEffect(() => {
 		if (loginStatus === "success") {
@@ -113,224 +102,218 @@ const Home = () => {
 	};
 
 	const loginHandler = (val) => {
-		// loginMutate(val);
-		console.log(val);
+		loginMutate(val);
 	};
-	const floatingButtonOnClick = () => {
-		if (!isUserLoggedIn) {
-			return setIsLoginModalOpen(true);
-		}
-		// navigate(`/${Cookies.get(constants.INFO)}`);
-	};
-
 	return (
-		<MainLayout>
-			<main>
-				<div className='Hero'>
-					<div className='container info-wrapper'>
-						<div className='row align-items-center'>
-							<div className='col-12 col-lg-6'>
-								<div className='intro'>
-									<h1>
-										با <span className='color-orange'>NFC Card</span> حرفه ای تر
-										کار کنید
-									</h1>
-									<p>برای آغاز هر همکاری، معرفی درست حرف اول را می زند!</p>
-								</div>
+		<>
+			<Head>
+				<title>NFC Card | صفحه اصلی</title>
+			</Head>
+			<div className='Hero'>
+				<div className='container info-wrapper'>
+					<div className='row align-items-center'>
+						<div className='col-12 col-lg-6'>
+							<div className='intro'>
+								<h1>
+									با <span className='color-orange'>NFC Card</span> حرفه ای تر کار
+									کنید
+								</h1>
+								<p>برای آغاز هر همکاری، معرفی درست حرف اول را می زند!</p>
 							</div>
-							<div className='col-12 col-lg-6'>
-								{/* <Cards /> */}
-								<div className='position-relative'>
-									<CursorPoiner show={showTooltip} />
-									<div className='cards-wrapper'>
-										<Swiper
-											effect={"cards"}
-											grabCursor={true}
-											modules={[EffectCards]}
-											className='mySwiper'
-											onSlideChange={() => setShowTooltip(false)}
-										>
-											<SwiperSlide>
-												<Image
-													src={image1}
-													className='slider-image'
-													alt='card'
-												/>
-											</SwiperSlide>
-											<SwiperSlide>
-												<Image
-													src={image2}
-													className='slider-image'
-													alt='card'
-												/>
-											</SwiperSlide>
-											<SwiperSlide>
-												<Image
-													src={image3}
-													className='slider-image'
-													alt='card'
-												/>
-											</SwiperSlide>
-											<SwiperSlide>
-												<Image
-													src={image4}
-													className='slider-image'
-													alt='card'
-												/>
-											</SwiperSlide>
-										</Swiper>
-									</div>
+						</div>
+						<div className='col-12 col-lg-6'>
+							{/* <Cards /> */}
+							<div className='position-relative'>
+								<CursorPoiner show={showTooltip} />
+								<div className='cards-wrapper'>
+									<Swiper
+										effect={"cards"}
+										grabCursor={true}
+										modules={[EffectCards]}
+										className='mySwiper'
+										onSlideChange={() => setShowTooltip(false)}
+									>
+										<SwiperSlide>
+											<Image
+												src={image1}
+												className='slider-image'
+												alt='card'
+											/>
+										</SwiperSlide>
+										<SwiperSlide>
+											<Image
+												src={image2}
+												className='slider-image'
+												alt='card'
+											/>
+										</SwiperSlide>
+										<SwiperSlide>
+											<Image
+												src={image3}
+												className='slider-image'
+												alt='card'
+											/>
+										</SwiperSlide>
+										<SwiperSlide>
+											<Image
+												src={image4}
+												className='slider-image'
+												alt='card'
+											/>
+										</SwiperSlide>
+									</Swiper>
 								</div>
 							</div>
 						</div>
 					</div>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						width='100%'
-						height='96px'
-						viewBox='0 0 100 100'
-						version='1.1'
-						preserveAspectRatio='none'
-						className='injected-svg'
-						data-src='assets/img/dividers/divider-2.svg'
-					>
-						<path d='M0,0 C16.6666667,66 33.3333333,99 50,99 C66.6666667,99 83.3333333,66 100,0 L100,100 L0,100 L0,0 Z'></path>
-					</svg>
-					<video muted loop autoPlay>
-						<source src='assets/heroVideo.mp4' />
-					</video>
-					<div className='video-overlay'></div>
 				</div>
-				{/* seconde section */}
-				<div className='second-section'>
-					<div className='info-wrapper mt-5'>
-						<h4>
-							چرا باید <span className='color-orange'>کارت هوشمند</span> بخریم؟
-						</h4>
-						<p>
-							با خرید کارت هوشمند NFC Card میتونید خیلی حرفه ای تر خودتونو معرفی کنید
-							و تو یه لحظه همه اطلاعاتی که میخواید رو با فرد مقابلتون به اشتراک بذارید
-							علاوه بر این یکبار میخرید و همیشه استفاده میکنید با اینکار میتونید جلوی
-							قطع شدن کلی درخت رو بگیرید و تو حفظ محیط زیست یه قدم حتی کوچیک بردارید
-						</p>
-					</div>
-					<div className='lottie-wrapper'>
-						<Lottie
-							style={{ cursor: "unset" }}
-							options={earthAnimation}
-							isClickToPauseDisabled
-						/>
-					</div>
-					<svg
-						version='1.2'
-						className='wave'
-						xmlns='http://www.w3.org/2000/svg'
-						viewBox='0 0 1440 160'
-					>
-						<path
-							id='Layer'
-							d='m0 64l80-16c80-16 240-48 400-42.7 160 5.7 320 47.7 480 64 160 15.7 320 5.7 400 0l80-5.3v96h-80c-80 0-240 0-400 0q-240 0-480 0c-160 0-320 0-400 0h-80z'
-						/>
-					</svg>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					width='100%'
+					height='96px'
+					viewBox='0 0 100 100'
+					version='1.1'
+					preserveAspectRatio='none'
+					className='injected-svg'
+					data-src='assets/img/dividers/divider-2.svg'
+				>
+					<path d='M0,0 C16.6666667,66 33.3333333,99 50,99 C66.6666667,99 83.3333333,66 100,0 L100,100 L0,100 L0,0 Z'></path>
+				</svg>
+				<video muted loop autoPlay>
+					<source src='assets/heroVideo.mp4' />
+				</video>
+				<div className='video-overlay'></div>
+			</div>
+			{/* seconde section */}
+			<div className='second-section'>
+				<div className='info-wrapper mt-5'>
+					<h4>
+						چرا باید <span className='color-orange'>کارت هوشمند</span> بخریم؟
+					</h4>
+					<p>
+						با خرید کارت هوشمند NFC Card میتونید خیلی حرفه ای تر خودتونو معرفی کنید و تو
+						یه لحظه همه اطلاعاتی که میخواید رو با فرد مقابلتون به اشتراک بذارید علاوه بر
+						این یکبار میخرید و همیشه استفاده میکنید با اینکار میتونید جلوی قطع شدن کلی
+						درخت رو بگیرید و تو حفظ محیط زیست یه قدم حتی کوچیک بردارید
+					</p>
 				</div>
-				{/* third section */}
-				<div className='third-section'>
-					<div className='info-wrapper '>
-						<h4>
-							کارت ویزیت <span className='color-orange'>هوشمند</span> چیه؟
-						</h4>
-						<p>
-							نسل جدید کارت ویزیت های هوشمند که با استفاده از تکنولوژی nfc اطلاعات
-							کاربر رو داخل خودشون ذخیره و با نگه داشتن جلوی موبایل مخاطب کل اطلاعاتی
-							که داخل یه کارت ویزیت معمولی هست به علاوه اطلاعات دیگه از جمله ادرس
-							تمامی شبکه های اجتماعی به گوشی فرد مقابل میرسونه و شما رو از دردسر طراحی
-							و چاپ هزارتا کارت ویزیت قدیمی راحت میکنه
-						</p>
-					</div>
-					<div className='lottie-wrapper'>
-						<Lottie
-							style={{ cursor: "unset", fill: "transparent" }}
-							options={clientAnimation}
-							isClickToPauseDisabled
-						/>
-					</div>
-					<BlobButton
-						backgroundColor='#14a76c'
-						style={{ width: "60%", margin: "10px auto" }}
-						isLink
-						link='https://wa.me/989027165900?text=%D8%B3%D9%84%D8%A7%D9%85'
-					>
-						سفارش کارت
-					</BlobButton>
+				<div className='lottie-wrapper'>
+					<Lottie
+						style={{ cursor: "unset" }}
+						options={earthAnimation}
+						isClickToPauseDisabled
+					/>
 				</div>
+				<svg
+					version='1.2'
+					className='wave'
+					xmlns='http://www.w3.org/2000/svg'
+					viewBox='0 0 1440 160'
+				>
+					<path
+						id='Layer'
+						d='m0 64l80-16c80-16 240-48 400-42.7 160 5.7 320 47.7 480 64 160 15.7 320 5.7 400 0l80-5.3v96h-80c-80 0-240 0-400 0q-240 0-480 0c-160 0-320 0-400 0h-80z'
+					/>
+				</svg>
+			</div>
+			{/* third section */}
+			<div className='third-section'>
+				<div className='info-wrapper '>
+					<h4>
+						کارت ویزیت <span className='color-orange'>هوشمند</span> چیه؟
+					</h4>
+					<p>
+						نسل جدید کارت ویزیت های هوشمند که با استفاده از تکنولوژی nfc اطلاعات کاربر
+						رو داخل خودشون ذخیره و با نگه داشتن جلوی موبایل مخاطب کل اطلاعاتی که داخل یه
+						کارت ویزیت معمولی هست به علاوه اطلاعات دیگه از جمله ادرس تمامی شبکه های
+						اجتماعی به گوشی فرد مقابل میرسونه و شما رو از دردسر طراحی و چاپ هزارتا کارت
+						ویزیت قدیمی راحت میکنه
+					</p>
+				</div>
+				<div className='lottie-wrapper'>
+					<Lottie
+						style={{ cursor: "unset", fill: "transparent" }}
+						options={clientAnimation}
+						isClickToPauseDisabled
+					/>
+				</div>
+				<BlobButton
+					backgroundColor='#14a76c'
+					style={{ width: "60%", margin: "10px auto" }}
+					isLink
+					link='https://wa.me/989027165900?text=%D8%B3%D9%84%D8%A7%D9%85'
+				>
+					سفارش کارت
+				</BlobButton>
+			</div>
 
-				{/* review section */}
-				<section className='container review-section'>
-					<h3>
-						نظرات <span className='color-orange'>مشتریان</span>
-					</h3>
+			{/* review section */}
+			<section className='container review-section'>
+				<h3>
+					نظرات <span className='color-orange'>مشتریان</span>
+				</h3>
 
-					<Swiper
-						slidesPerView={4}
-						spaceBetween={40}
-						breakpoints={{
-							"@0.00": {
-								slidesPerView: 1,
-								spaceBetween: 10,
-							},
-							"@0.50": {
-								slidesPerView: 1,
-								spaceBetween: 20,
-							},
-							"@0.75": {
-								slidesPerView: 2,
-								spaceBetween: 30,
-							},
-							"@1.00": {
-								slidesPerView: 3,
-								spaceBetween: 40,
-							},
-							"@1.50": {
-								slidesPerView: 4,
-								spaceBetween: 50,
-							},
-						}}
-						navigation={true}
-						modules={[Pagination, Navigation]}
-						className='mySwiper2'
-					>
-						{reviews.map((review) => (
-							<SwiperSlide key={review.id}>
-								<ReviewCard data={review} />
-							</SwiperSlide>
-						))}
-					</Swiper>
-				</section>
-
+				<Swiper
+					slidesPerView={4}
+					spaceBetween={40}
+					breakpoints={{
+						"@0.00": {
+							slidesPerView: 1,
+							spaceBetween: 10,
+						},
+						"@0.50": {
+							slidesPerView: 1,
+							spaceBetween: 20,
+						},
+						"@0.75": {
+							slidesPerView: 2,
+							spaceBetween: 30,
+						},
+						"@1.00": {
+							slidesPerView: 3,
+							spaceBetween: 40,
+						},
+						"@1.50": {
+							slidesPerView: 4,
+							spaceBetween: 50,
+						},
+					}}
+					navigation={true}
+					modules={[Pagination, Navigation]}
+					className='mySwiper2'
+				>
+					{reviews.map((review) => (
+						<SwiperSlide key={review.id}>
+							<ReviewCard data={review} />
+						</SwiperSlide>
+					))}
+				</Swiper>
+			</section>
+			{!isUserLoggedIn ? (
 				<FloatingButton
-					onClick={floatingButtonOnClick}
-					position={
-						isLtr
-							? { top: "50%", left: "-30px", right: "auto", bottom: "0" }
-							: { top: "50%", left: "auto", right: "-30px", bottom: "0" }
-					}
+					onClick={() => setIsLoginModalOpen(true)}
+					position={{ top: "50%", left: "auto", right: "-30px", bottom: "0" }}
 					backgroundColor='#ff652f'
 				>
 					<i className='fas fa-user usericon'></i>
 				</FloatingButton>
-
-				<Modal
-					isOpen={isLoginModalOpen}
-					disableBackdropClose
-					onClose={() => setIsLoginModalOpen(false)}
+			) : (
+				<FloatingButton
+					position={{ top: "50%", left: "auto", right: "-30px", bottom: "0" }}
+					backgroundColor='#ff652f'
+					link={`${JSON.parse(Cookies.get(constants.INFO)).username}`}
 				>
-					<LoginModal
-						loginHandler={(val) => loginHandler(val)}
-						isLoginLoading={loginIsLoading}
-					/>
-				</Modal>
-			</main>
-		</MainLayout>
+					<i className='fas fa-user usericon'></i>
+				</FloatingButton>
+			)}
+
+			<Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)}>
+				<LoginModal
+					loginHandler={(val) => loginHandler(val)}
+					isLoginLoading={loginIsLoading}
+				/>
+			</Modal>
+		</>
 	);
 };
 

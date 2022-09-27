@@ -10,7 +10,7 @@ const MainLayout = ({ children }) => {
 
 			<main>{children}</main>
 			<footer className='footer'>
-				<span> All Rights Reserved 2022 &copy;</span>
+				<span> All Rights Reserved 2022 ©️</span>
 			</footer>
 		</div>
 	);

@@ -4,7 +4,7 @@ export default function Document() {
 	return (
 		<Html>
 			<Head />
-			<body>
+			<body dir='rtl'>
 				<Main />
 				<div id='portal'></div>
 				<NextScript />

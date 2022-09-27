@@ -1,15 +1,8 @@
-import i18next from "i18next";
 import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 import { languages } from "utils/Languages";
 
 function LanguageChanger() {
-	const currentlanguageCode = Cookies.get("i18next") || "en";
-	const currentLanguage = languages.find((lang) => lang.code === currentlanguageCode);
-	useEffect(() => {
-		document.body.dir = currentLanguage.dir || "ltr";
-	}, [currentLanguage]);
-
 	return (
 		<div className='language-changer-dropdown'>
 			<button
@@ -28,7 +21,8 @@ function LanguageChanger() {
 							className='dropdown-item'
 							onClick={() => {
 								window.location.reload();
-								i18next.changeLanguage(lang.code);
+								// i18next.changeLanguage(lang.code);
+								console.log(lang.code);
 							}}
 							disabled={lang.code === currentLanguage.code}
 						>

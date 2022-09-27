@@ -1,45 +1,40 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
-import HttpApi from "i18next-http-backend";
+import MainLayout from "layout/MainLayout";
 import { ToastContainer } from "react-toastify";
-
-import "styles/globals.scss";
 import { QueryClient, QueryClientProvider } from "react-query";
+import "flag-icon-css/css/flag-icons.min.css";
+import "bootstrap/dist/css/bootstrap.rtl.min.css";
+import "styles/globals.scss";
+import Head from "next/head";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
-	i18n.use(initReactI18next)
-		.use(LanguageDetector)
-		.use(HttpApi)
-		.init({
-			supportedLngs: ["en", "fas"],
-			fallbackLng: "en",
-			detection: {
-				order: ["cookie", "htmlTag", "localStorage", "path"],
-				caches: ["cookie"],
-			},
-			backend: {
-				loadPath: "locales/{{lng}}/translation.json",
-			},
-		});
 	const queryClient = new QueryClient();
+
+	useEffect(() => {
+		import("bootstrap/dist/js/bootstrap");
+	}, []);
 
 	return (
 		<>
+			<Head>
+				<meta name='viewport' content='width=device-width, initial-scale=1' />
+			</Head>
 			<QueryClientProvider client={queryClient}>
-				<Component {...pageProps} />
-				<ToastContainer
-					position='top-right'
-					theme='dark'
-					autoClose={5000}
-					hideProgressBar={false}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnFocusLoss
-					draggable
-					pauseOnHover
-				/>
+				<MainLayout>
+					<Component {...pageProps} />
+					<ToastContainer
+						position='top-right'
+						theme='dark'
+						autoClose={5000}
+						hideProgressBar={false}
+						newestOnTop={false}
+						closeOnClick
+						rtl={false}
+						pauseOnFocusLoss
+						draggable
+						pauseOnHover
+					/>
+				</MainLayout>
 			</QueryClientProvider>
 		</>
 	);

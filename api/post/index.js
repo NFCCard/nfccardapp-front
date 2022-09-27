@@ -1,5 +1,6 @@
 import login from "./login";
 import logout from "./logout";
 import storeUser from "./storeUser";
-const post = { login, logout, storeUser };
+import createVcfFile from "./createVcfFile";
+const post = { login, logout, storeUser, createVcfFile };
 export default post;

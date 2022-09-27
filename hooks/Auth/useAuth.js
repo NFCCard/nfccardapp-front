@@ -30,7 +30,7 @@ const useLogin = () => {
 			Cookies.set(constants.TOKEN, data.access_token, {
 				expires: new Date().getFullYear(),
 			});
-			Cookies.set(constants.INFO, data.data.user_name, {
+			Cookies.set(constants.INFO, JSON.stringify(data.user), {
 				expires: new Date().getFullYear(),
 			});
 

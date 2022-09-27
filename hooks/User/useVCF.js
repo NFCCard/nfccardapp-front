@@ -1,14 +1,16 @@
 import api from "api";
-import { useQuery } from "react-query";
+import { useMutation } from "react-query";
 
-const useVcf = (username) => {
-	const { data, isLoading, status, refetch } = useQuery(
-		"getUserVcf",
-		() => api.get.getUserVcf({ username }),
-		{
-			retry: 0,
-		}
-	);
-	return { data, isLoading, status, refetch };
+const useCreateVcf = () => {
+	return useMutation((id) => api.post.createVcfFile({ id }), {
+		onError: (error, variables, context) => {
+			// An error happened!
+			Toastify("error", error.response.data.message);
+		},
+		onSuccess: (data, variables, context) => {
+			console.log(typeof data);
+			window.open(data, "_blank");
+		},
+	});
 };
-export { useVcf };
+export { useCreateVcf };

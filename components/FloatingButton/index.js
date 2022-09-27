@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 
@@ -41,10 +42,11 @@ const SpanButton = styled.span`
 		color: #fff;
 	}
 `;
-const FloatingButton = ({ onClick, type, children, position, backgroundColor, isSpan }) => {
+
+const FloatingButton = ({ onClick, type, children, position, backgroundColor, isSpan, link }) => {
 	return (
 		<>
-			{isSpan ? (
+			{isSpan && (
 				<SpanButton
 					type={type}
 					onClick={onClick}
@@ -54,7 +56,21 @@ const FloatingButton = ({ onClick, type, children, position, backgroundColor, is
 				>
 					{children}
 				</SpanButton>
-			) : (
+			)}
+			{link && (
+				<Link href={link}>
+					<a>
+						<SpanButton
+							position={position}
+							className='floatingButton'
+							backgroundColor={backgroundColor}
+						>
+							{children}
+						</SpanButton>
+					</a>
+				</Link>
+			)}
+			{!isSpan && !link && (
 				<Button
 					type={type}
 					onClick={onClick}

@@ -4,12 +4,8 @@ import { Toastify } from "components";
 import Cookies from "js-cookie";
 
 const useGetProfile = (username) => {
-	const { data, isLoading, status, refetch } = useQuery(
-		"getSingleProfile",
-		() => api.get.getSingleProfile({ username }),
-		{
-			retry: 0,
-		}
+	const { data, isLoading, status, refetch } = useQuery("getSingleProfile", () =>
+		api.get.getSingleProfile({ username })
 	);
 	return { data, isLoading, status, refetch };
 };
@@ -19,11 +15,7 @@ const useGetProfileMutate = (username) => {
 			// An error happened!
 			Toastify("error", error.response.data.message);
 		},
-		onSuccess: (data, variables, context) => {
-			if (data.type === "admin") {
-				Cookies.set("_t", 1422);
-			}
-		},
+		onSuccess: (data, variables, context) => {},
 	});
 };
 

@@ -7,7 +7,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 	const [isReset, setIsReset] = useState(false);
 
 	const loginSubmitHandler = (values) => {
-		loginHandler({ user_name: values.username, password: values.password });
+		loginHandler({ username: values.username, password: values.password });
 	};
 
 	return (
