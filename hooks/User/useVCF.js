@@ -8,7 +8,6 @@ const useCreateVcf = () => {
 			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
-			console.log(typeof data);
 			window.open(data, "_blank");
 		},
 	});

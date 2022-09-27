@@ -24,7 +24,6 @@ const Profile = ({ data }) => {
 
 	useEffect(() => {
 		setUser(data?.data.profile);
-		console.log({ data });
 	}, [data]);
 
 	useEffect(() => {

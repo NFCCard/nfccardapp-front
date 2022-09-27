@@ -92,6 +92,7 @@ const EditProfile = ({ data }) => {
 		if (!values.email.length) return Toastify("error", "ایمیل وارد نشده", "email_error");
 		if (!values.phoneNumber.length)
 			return Toastify("error", "شماره تماس وارد نشده", "phoneNumber_error");
+
 		let socialMediaList = [];
 		if (values.telegram) socialMediaList.push({ social: "telegram", url: values.telegram });
 		if (values.instagram) socialMediaList.push({ social: "instagram", url: values.instagram });
@@ -125,7 +126,7 @@ const EditProfile = ({ data }) => {
 			},
 		};
 
-		updateProfile({ id: JSON.parse(Cookies.get(constants.INFO)).id, formData });
+		updateProfile({ id: storage.userInfo.id, formData });
 	};
 	const avatarChangeHandler = (file) => {
 		setAvatar(file);
