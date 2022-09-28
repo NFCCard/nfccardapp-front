@@ -5,7 +5,7 @@ export const languages = [
 		country_code: "gb",
 	},
 	{
-		code: "fas",
+		code: "fa",
 		name: "فارسی",
 		country_code: "ir",
 		dir: "rtl",

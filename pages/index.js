@@ -29,6 +29,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { constants } from "values";
 import Head from "next/head";
 import { AppContext } from "../context/AppContextProvider";
+import { useRouter } from "next/router";
 
 const Home = () => {
 	const reviews = [
@@ -79,11 +80,19 @@ const Home = () => {
 	const { mutate: loginMutate, isLoading: loginIsLoading, status: loginStatus } = useLogin();
 	const { isUserLoggedIn } = useAuth();
 	const { storage, setStorage } = useContext(AppContext);
+	const router = useRouter();
+
 	useEffect(() => {
 		if (loginStatus === "success") {
 			setIsLoginModalOpen(false);
 		}
 	}, [loginStatus]);
+	useEffect(() => {
+		let dir = router.locale == "fa" ? "rtl" : "rtl";
+		let lang = router.locale == "fa" ? "fa" : "fa";
+		document.querySelector("body").setAttribute("dir", dir);
+		document.querySelector("body").setAttribute("lang", lang);
+	}, [router.locale]);
 
 	const earthAnimation = {
 		loop: true,

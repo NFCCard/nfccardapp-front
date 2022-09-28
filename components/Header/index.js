@@ -9,7 +9,6 @@ const HeaderSection = styled.section`
 	justify-content: center;
 	align-items: center;
 `;
-
 const Header = () => {
 	return (
 		<HeaderSection>

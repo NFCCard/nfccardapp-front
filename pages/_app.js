@@ -1,12 +1,13 @@
 import MainLayout from "layout/MainLayout";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "react-query";
-import "flag-icon-css/css/flag-icons.min.css";
-import "bootstrap/dist/css/bootstrap.rtl.min.css";
-import "styles/globals.scss";
 import Head from "next/head";
 import { useEffect } from "react";
 import AppContextProvider from "../context/AppContextProvider";
+import { appWithTranslation } from "next-i18next";
+import "flag-icon-css/css/flag-icons.min.css";
+import "bootstrap/dist/css/bootstrap.rtl.min.css";
+import "styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
 	const queryClient = new QueryClient();
@@ -42,5 +43,4 @@ function MyApp({ Component, pageProps }) {
 		</>
 	);
 }
-
-export default MyApp;
+export default appWithTranslation(MyApp);

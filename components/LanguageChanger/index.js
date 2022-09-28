@@ -1,8 +1,17 @@
 import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 import { languages } from "utils/Languages";
+import { useRouter } from "next/router";
 
 function LanguageChanger() {
+	const router = useRouter();
+	const onToggleLanguageClick = (newLocale) => {
+		const { pathname, asPath, query } = router;
+		router.push({ pathname, query }, asPath, { locale: newLocale });
+	};
+	const { locales, locale: activeLocale } = router;
+	const changeTo = router.locale === "en" ? "fa" : "en";
+
 	return (
 		<div className='language-changer-dropdown'>
 			<button
@@ -12,7 +21,11 @@ function LanguageChanger() {
 				data-bs-toggle='dropdown'
 				aria-expanded='false'
 			>
-				<span className={`flag-icon flag-icon-${currentLanguage.country_code}`}></span>
+				<span
+					className={`flag-icon flag-icon-${
+						languages.find((lang) => lang.code === activeLocale).country_code
+					}`}
+				></span>
 			</button>
 			<ul className='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
 				{languages.map((lang) => (
@@ -20,9 +33,9 @@ function LanguageChanger() {
 						<button
 							className='dropdown-item'
 							onClick={() => {
-								window.location.reload();
+								onToggleLanguageClick(changeTo);
 							}}
-							disabled={lang.code === currentLanguage.code}
+							disabled={lang.code === activeLocale}
 						>
 							<span className={`flag-icon flag-icon-${lang.country_code}`}></span>
 							{lang.name}

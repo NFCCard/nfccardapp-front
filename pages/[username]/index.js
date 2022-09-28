@@ -1,30 +1,45 @@
 import api from "api";
-import { BlobButton, FloatingButton, Loading, Modal, LoginModal } from "components";
+import {
+	BlobButton,
+	FloatingButton,
+	LanguageChanger,
+	Loading,
+	LoginModal,
+	Modal,
+} from "components";
 import { useAuth, useLogin } from "hooks/Auth/useAuth";
-import Cookies from "js-cookie";
+import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import { constants, icons } from "values";
+import { icons } from "values";
 import { socialMediaColors } from "values/colors";
+import { AppContext } from "../../context/AppContextProvider";
 import { useCreateVcf } from "../../hooks/User/useVCF";
 import defaultAvatar from "/public/assets/images/user.png";
-import { config } from "values";
-import { AppContext } from "../../context/AppContextProvider";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Profile = ({ data }) => {
 	const [user, setUser] = useState();
-	const [isLtr, setIsLtr] = useState();
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-	const { mutate: loginMutate, isLoading: loginIsLoading, status: loginStatus } = useLogin();
-	const { mutate: vcfMutate, isLoading: isVcfLoading, status: vcfStatus } = useCreateVcf();
 	const { isUserLoggedIn } = useAuth();
 	const router = useRouter();
-	const { storage, setStorage } = useContext(AppContext);
+	const { storage } = useContext(AppContext);
+	const { locale: activeLocale } = router;
+	const { t } = useTranslation("common");
+	const { mutate: loginMutate, isLoading: loginIsLoading, status: loginStatus } = useLogin();
+	const { mutate: vcfMutate, isLoading: isVcfLoading, status: vcfStatus } = useCreateVcf();
 
 	useEffect(() => {
 		setUser(data?.data.profile);
 	}, [data]);
+
+	useEffect(() => {
+		let dir = router.locale == "fa" ? "rtl" : "ltr";
+		let lang = router.locale == "fa" ? "fa" : "en";
+		document.querySelector("body").setAttribute("dir", dir);
+		document.querySelector("body").setAttribute("lang", lang);
+	}, [router.locale]);
 
 	useEffect(() => {
 		if (loginStatus === "success") {
@@ -54,6 +69,7 @@ const Profile = ({ data }) => {
 
 			{user ? (
 				<>
+					<LanguageChanger />
 					<main className='profile'>
 						{/* Information */}
 						<section className='information'>
@@ -79,7 +95,7 @@ const Profile = ({ data }) => {
 									<div className='description-col'>
 										{/* Name */}
 
-										{isLtr ? (
+										{activeLocale === "en" ? (
 											<h3>
 												{user.first_name.en}{" "}
 												<span>{user.last_name.en}</span>
@@ -90,7 +106,7 @@ const Profile = ({ data }) => {
 												<span>{user.last_name.fa}</span>
 											</h3>
 										)}
-										{isLtr ? (
+										{activeLocale === "en" ? (
 											<p className='description'>
 												{user.description
 													? user.description.en
@@ -110,24 +126,24 @@ const Profile = ({ data }) => {
 						{/* Call Or Email */}
 						<section className='calling container'>
 							<div className='calling-info'>
-								<h4>تماس با من</h4>
+								<h4>{t("contact_me")}</h4>
 								<div className='calling-buttons'>
 									<BlobButton
 										backgroundColor={"#fca311"}
 										isLink
 										link={`tel:${user.phone}`}
 									>
-										شماره تماس
+										{t("phone_number")}
 									</BlobButton>
 									<BlobButton
 										backgroundColor={"#ed143d"}
 										isLink
 										link={`mailto:${user.email}`}
 									>
-										ایمیل
+										{t("email")}
 									</BlobButton>
 									<BlobButton backgroundColor={"royalblue"} onClick={getVcfFile}>
-										افزودن به مخاطبین
+										{t("add_contact")}
 									</BlobButton>
 								</div>
 							</div>
@@ -136,7 +152,7 @@ const Profile = ({ data }) => {
 						{/* Social Media */}
 						{user?.socials.length ? (
 							<section className='container social'>
-								<h3>شبکه های اجتماعی</h3>
+								<h3>{t("social_medias")}</h3>
 								<div className='socailmedias'>
 									{user.socials &&
 										user.socials.map((socialMedia, i) => {
@@ -171,7 +187,7 @@ const Profile = ({ data }) => {
 							<FloatingButton
 								onClick={floatingButtonOnClick}
 								position={
-									isLtr
+									activeLocale === "en"
 										? {
 												top: "unset",
 												left: "30px",
@@ -213,6 +229,7 @@ const Profile = ({ data }) => {
 export async function getServerSideProps(context) {
 	let data = null;
 	let notFound = false;
+	console.log(context);
 	try {
 		data = await api.get.getSingleProfile({ username: context.query.username });
 	} catch (error) {
@@ -228,7 +245,7 @@ export async function getServerSideProps(context) {
 		};
 	}
 	return {
-		props: { data }, // will be passed to the page component as props
+		props: { data, ...(await serverSideTranslations(context.locale, ["common"])) },
 	};
 }
 

@@ -4,7 +4,7 @@ export default function Document() {
 	return (
 		<Html>
 			<Head />
-			<body dir='rtl'>
+			<body>
 				<Main />
 				<NextScript />
 			</body>
