@@ -1,22 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect } from "react";
+import Modal from "react-modal";
 import { CSSTransition } from "react-transition-group";
-import useClickOutside from "hooks/customs/useClickedOutSide";
-function Modal({ children, isOpen, disableBackdropClose, onClose, title, className, ...attr }) {
-	const [mounted, setMounted] = useState(false);
-	const modalRef = useRef(null);
-	
-	useClickOutside(modalRef, onClose);
-
+function CustomModal({ children, isOpen, onClose, title, className, ...attr }) {
 	useEffect(() => {
-		setMounted(true);
+		Modal.setAppElement(document.getElementById("__next"));
 	}, []);
 
-	if (mounted) {
-		const modalRoot = document.getElementById("portal");
-		return ReactDOM.createPortal(
+	return (
+		<Modal
+			isOpen={isOpen}
+			onRequestClose={onClose}
+			contentLabel={title}
+			portalClassName='portal'
+			overlayClassName='bk-modal-backdrop'
+			shouldCloseOnEsc
+		>
 			<CSSTransition
-				timeout={300}
+				timeout={300000}
 				in={isOpen}
 				classNames={{
 					enter: "hidden",
@@ -28,25 +28,10 @@ function Modal({ children, isOpen, disableBackdropClose, onClose, title, classNa
 				}}
 				unmountOnExit
 			>
-				<div className='bk-modal' ref={modalRef} {...attr}>
-					<div
-						className='bk-modal-backdrop'
-						onClick={() => !disableBackdropClose && onClose()}
-					></div>
-					<div className={`bk-modal-wrapper ${className}`}>
-						<div className='bk-modal-header'>
-							<span>{title}</span>
-							<span>
-								<i className='fas fa-times bk-close-modal' onClick={onClose}></i>
-							</span>
-						</div>
-						<div className='bk-modal-body'>{children}</div>
-					</div>
-				</div>
-			</CSSTransition>,
-			modalRoot
-		);
-	}
+				{children}
+			</CSSTransition>
+		</Modal>
+	);
 }
 
-export default Modal;
+export default CustomModal;

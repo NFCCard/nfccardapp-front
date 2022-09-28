@@ -38,6 +38,9 @@ const useLogin = () => {
 				userInfo: data.user,
 			}));
 			Toastify("success", "با موفقیت وارد شدید");
+			setTimeout(() => {
+				window.location.reload();
+			}, 2000);
 		},
 	});
 };

@@ -216,7 +216,7 @@ export async function getServerSideProps(context) {
 	try {
 		data = await api.get.getSingleProfile({ username: context.query.username });
 	} catch (error) {
-		if (error.response.data.code === 9995) {
+		if (error.response?.data.code === 9995) {
 			notFound = true;
 		}
 	}
