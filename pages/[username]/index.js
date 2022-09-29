@@ -28,7 +28,6 @@ const Profile = ({ data }) => {
 	const { locale: activeLocale } = router;
 	const { t } = useTranslation("common");
 	const { mutate: loginMutate, isLoading: loginIsLoading, status: loginStatus } = useLogin();
-	const { mutate: vcfMutate, isLoading: isVcfLoading, status: vcfStatus } = useCreateVcf();
 
 	useEffect(() => {
 		setUser(data?.data.profile);
@@ -47,7 +46,9 @@ const Profile = ({ data }) => {
 		}
 	}, [loginStatus]);
 	const getVcfFile = () => {
-		vcfMutate(data.data.id);
+		window.open(
+			`https://api.nfccardapp.ir/api/core/users/-actions/${data.data.id}/create-vcf-file`
+		);
 	};
 
 	const loginHandler = (val) => {

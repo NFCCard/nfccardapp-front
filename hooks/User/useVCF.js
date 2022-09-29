@@ -1,5 +1,6 @@
 import api from "api";
 import { useMutation } from "react-query";
+import { Toastify } from "components";
 
 const useCreateVcf = () => {
 	return useMutation((id) => api.post.createVcfFile({ id }), {
@@ -8,7 +9,7 @@ const useCreateVcf = () => {
 			Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
-			window.open(data, "_blank");
+			Toastify("success", "درحال دانلود...");
 		},
 	});
 };
