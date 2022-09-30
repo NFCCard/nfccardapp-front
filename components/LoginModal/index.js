@@ -1,5 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
+import { loginValidation } from "../../validations/loginValidation";
 import { Button } from "../index";
 
 const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
@@ -18,7 +19,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 					<h4>ورود به حساب کاربری</h4>
 
 					<Formik
-						// validationSchema={LoginValidate}
+						validationSchema={loginValidation}
 						initialValues={{
 							username: "",
 							password: "",
@@ -38,6 +39,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 										id='username'
 										autoComplete='off'
 										type='text'
+										style={{ direction: "ltr" }}
 									/>
 									<label htmlFor='username'>نام کاربری</label>
 
@@ -53,6 +55,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 										autoComplete='off'
 										id='password'
 										type='password'
+										style={{ direction: "ltr" }}
 									/>
 									<label htmlFor='password'>پسورد</label>
 
@@ -61,7 +64,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 									)}
 								</div>
 
-								<span>
+								{/* <span>
 									رمزتو فراموش کردی؟
 									<button
 										type='button'
@@ -71,7 +74,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 									>
 										بازیابی پسورد
 									</button>
-								</span>
+								</span> */}
 
 								<Button
 									isBold
@@ -206,14 +209,14 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 					</Formik>
 				</div> */}
 				{/* Reset Password */}
-				<div
+				{/* <div
 					className='reset-password-form'
 					style={isReset ? { left: "0%" } : { left: "100%" }}
 				>
 					<h3>میخوای پسوردتو عوض کنی؟</h3>
 					<Formik
 						initialValues={{
-							email: "",
+							reset_username: "",
 						}}
 						onSubmit={(values) => {
 							// same shape as initial values
@@ -225,14 +228,14 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 								<div className='form-floating input-wrapper w-100'>
 									<Field
 										className='form-control'
-										name='username'
+										name='reset_username'
 										placeholder=''
-										id='username'
+										id='reset_username'
 										type='text'
 									/>
-									<label htmlFor='username'>نام کاربری</label>
-									{errors.username && touched.username && (
-										<span className='input-error'>{errors.username}</span>
+									<label htmlFor='reset_username'>نام کاربری</label>
+									{errors.reset_username && touched.reset_username && (
+										<span className='input-error'>{errors.reset_username}</span>
 									)}
 								</div>
 								<Button type='submit' isLarge hasBoxShadow hasBorder>
@@ -252,7 +255,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 							</Form>
 						)}
 					</Formik>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

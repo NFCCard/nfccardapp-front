@@ -47,7 +47,7 @@ const Profile = ({ data }) => {
 	}, [loginStatus]);
 	const getVcfFile = () => {
 		window.open(
-			`https://api.nfccardapp.ir/api/core/users/-actions/${data.data.id}/create-vcf-file`
+			`https://api.wosite.ir/api/core/users/-actions/${data.data.id}/create-vcf-file`
 		);
 	};
 
@@ -64,12 +64,13 @@ const Profile = ({ data }) => {
 
 	return (
 		<>
-			<Head>
-				<title>{router.query.username}</title>
-			</Head>
-
 			{user ? (
 				<>
+					<Head>
+						<title>{`${user.first_name.en} ${user.last_name.en} | ${user.first_name.fa} ${user.last_name.fa}`}</title>
+						<meta name='description' content={user.description.en} />
+						<meta name='description' content={user.description.fa} />
+					</Head>
 					<LanguageChanger />
 					<main className='profile'>
 						{/* Information */}
