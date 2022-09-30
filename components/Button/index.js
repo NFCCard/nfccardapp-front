@@ -1,7 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { Spinner } from "components";
 
-const Button = ({ onClick, children, type, style, className, buttonType, ...props }) => {
+const Button = ({
+	onClick,
+	children,
+	type,
+	style,
+	className,
+	buttonType,
+	isLoading,
+	disabled,
+	...props
+}) => {
 	const Button = styled.button`
 		border: 0;
 		outline: 0;
@@ -14,18 +25,30 @@ const Button = ({ onClick, children, type, style, className, buttonType, ...prop
 		color: #fff;
 		padding: 0.5rem 1rem;
 		border-radius: 12px;
+		height: 40px;
 	`;
 
 	return (
 		<Button
-			onClick={onClick}
+			onClick={!disabled && onClick}
 			type={type}
 			style={style}
 			className={className}
 			buttonType={buttonType}
 			{...props}
 		>
-			{children}
+			{isLoading ? (
+				<div className='btn-loader-wrapper'>
+					<div class='btn-loader'>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+				</div>
+			) : (
+				children
+			)}
 		</Button>
 	);
 };
