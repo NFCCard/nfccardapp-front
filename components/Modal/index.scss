@@ -13,11 +13,10 @@
 	.ReactModal__Content {
 		border-radius: 6px;
 		margin: 0 auto;
-		margin-top: 1rem;
 		max-width: 700px;
+		width: unset;
 		z-index: 161617;
 		overflow-y: auto;
-		width: 100%;
 		height: fit-content;
 		z-index: 161617;
 		background-color: #fff;

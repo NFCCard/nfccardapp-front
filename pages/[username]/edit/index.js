@@ -138,7 +138,7 @@ const EditProfile = ({ data }) => {
 				<section className='edit-profile-page'>
 					<Formik
 						initialValues={{
-							avatar: user.profile.resource.url,
+							avatar: user.profile.resource ? user.profile.resource.url : null,
 							firstName_fas: user.profile.first_name.fa,
 							firstName_en: user.profile.first_name.en,
 							lastName_fas: user.profile.last_name.fa,
