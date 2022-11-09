@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { Toastify } from "components";
 import api from "api";
 import { useMutation } from "react-query";
 import { AppContext } from "../../context/AppContextProvider";
@@ -32,10 +33,10 @@ const useUploadImage = () => {
 			// An error happened!
 			Toastify("error", error.response.data.message);
 		},
-		onSuccess: (data, variables, context) => {
+		onSuccess: async (data, variables, context) => {
 			setStorage((prev) => ({ ...prev, lastImageUploaded: data.data }));
-			updateAvatar();
-			return Toastify("success", "عکس با موفقیت آپدیت شد");
+			await updateAvatar();
+			return Toastify("success", "عکس با موفقیت آپلود شد");
 		},
 	});
 };
