@@ -15,8 +15,7 @@ import { useContext, useEffect, useState } from "react";
 import { icons } from "values";
 import { socialMediaColors } from "values/colors";
 import { AppContext } from "../../context/AppContextProvider";
-import { useCreateVcf } from "../../hooks/User/useVCF";
-import defaultAvatar from "/public/assets/images/user.png";
+
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Profile = ({ data }) => {
@@ -67,9 +66,9 @@ const Profile = ({ data }) => {
 			{user ? (
 				<>
 					<Head>
-						<title>{`${user.first_name?.en} ${user.last_name?.en} | ${user.first_name?.fa} ${user.last_name?.fa}`}</title>
-						<meta name='description' content={user.description?.en} />
-						<meta name='description' content={user.description?.fa} />
+						<title>{`${user.first_name.en} ${user.last_name.en} | ${user.first_name.fa} ${user.last_name.fa}`}</title>
+						<meta name='description' content={user.description.en} />
+						<meta name='description' content={user.description.fa} />
 					</Head>
 					<LanguageChanger />
 					<main className='profile'>
@@ -89,8 +88,12 @@ const Profile = ({ data }) => {
 											/>
 										</svg>
 										<img
-											src={user.resource ? user.resource.url : defaultAvatar}
-											alt=''
+											src={
+												user.resource
+													? user.resource.url
+													: "/assets/images/user.png"
+											}
+											alt={user.first_name.en + user.last_name.en}
 											className='avatar'
 										/>
 									</div>
@@ -99,13 +102,13 @@ const Profile = ({ data }) => {
 
 										{activeLocale === "en" ? (
 											<h3>
-												{user.first_name?.en}{" "}
-												<span>{user.last_name?.en}</span>
+												{user.first_name.en}{" "}
+												<span>{user.last_name.en}</span>
 											</h3>
 										) : (
 											<h3>
-												{user.first_name?.fa}{" "}
-												<span>{user.last_name?.fa}</span>
+												{user.first_name.fa}{" "}
+												<span>{user.last_name.fa}</span>
 											</h3>
 										)}
 										{activeLocale === "en" ? (
@@ -152,7 +155,7 @@ const Profile = ({ data }) => {
 						</section>
 
 						{/* Social Media */}
-						{user?.socials?.length ? (
+						{user?.socials.length ? (
 							<section className='container social'>
 								<h3>{t("social_medias")}</h3>
 								<div className='socailmedias'>
