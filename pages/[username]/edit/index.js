@@ -10,6 +10,8 @@ import api from "api";
 import { useUploadImage } from "../../../hooks/User/useResource";
 import { AppContext } from "../../../context/AppContextProvider";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useUpdatePassword } from "../../../hooks/User/useProfile";
 const socialMedias = [
 	{
 		name: "telegram",
@@ -66,15 +68,25 @@ const socialMedias = [
 ];
 
 const EditProfile = ({ data }) => {
-	const [isLtr, setIsLtr] = useState();
 	const [avatar, setAvatar] = useState();
 	const [user, setUser] = useState();
 	const { mutate: updateProfile, isLoading } = useUpdateProfile();
 	const { mutate: uploadImage, isLoading: isImageUploading } = useUploadImage();
+	const { mutate: passwordMutate, isLoading: passwordIsLoading } = useUpdatePassword();
+
 	const { storage, setStorage } = useContext(AppContext);
+	const router = useRouter();
+
 	useEffect(() => {
 		setUser(data.data);
 	}, [data]);
+	let dir;
+	useEffect(() => {
+		var dir = router.locale == "fa" ? "rtl" : "ltr";
+		let lang = router.locale == "fa" ? "fa" : "en";
+		document.querySelector("body").setAttribute("dir", dir);
+		document.querySelector("body").setAttribute("lang", lang);
+	}, [router.locale]);
 
 	const formSubmitHandler = (values) => {
 		if (!values.firstName_fas.length)
@@ -131,6 +143,13 @@ const EditProfile = ({ data }) => {
 	const avatarChangeHandler = (file) => {
 		setAvatar(file);
 		uploadImage(file);
+	};
+	const updatePasswordHandler = (values) => {
+		if (values.newPassword !== values.confirmPassword) {
+			return Toastify("error", "پسورد ها مطابقت ندارن", "currentPass_error");
+		}
+		console.log(values);
+		passwordMutate({ id: storage.userInfo.id, values });
 	};
 	return (
 		<>
@@ -409,7 +428,7 @@ const EditProfile = ({ data }) => {
 								<FloatingButton
 									type='submit'
 									position={
-										isLtr
+										dir === "ltr"
 											? {
 													top: "unset",
 													left: "30px",
@@ -428,6 +447,75 @@ const EditProfile = ({ data }) => {
 								>
 									<span>ذخیره</span>
 								</FloatingButton>
+							</Form>
+						)}
+					</Formik>
+					<Formik
+						initialValues={{
+							newPassword: "",
+							confirmPassword: "",
+						}}
+						onSubmit={(values) => {
+							updatePasswordHandler(values);
+						}}
+					>
+						{({ values, errors, setValues }) => (
+							<Form>
+								{/* updatePassword */}
+								<div className='password-secion section container'>
+									<h2>
+										<span className='color-orange'>گذرواژه</span> ویرایش
+									</h2>
+
+									<div className='form-floating mb-3 input-wrapper'>
+										<input
+											type='password'
+											className='form-control'
+											id='newPassword'
+											onChange={(e) => {
+												setValues((prev) => ({
+													...prev,
+													newPassword: e.target.value,
+												}));
+											}}
+											value={values.newPassword}
+											placeholder='پسورد جدید'
+											name='newPassword'
+										/>
+										<label htmlFor='newPassword'>پسورد جدید</label>
+									</div>
+									<div className='form-floating mb-3 input-wrapper'>
+										<input
+											type='password'
+											className='form-control'
+											id='confirmPassword'
+											placeholder='تایید پسورد'
+											onChange={(e) => {
+												setValues((prev) => ({
+													...prev,
+													confirmPassword: e.target.value,
+												}));
+											}}
+											value={values.confirmPassword}
+											name='confirmPassword'
+										/>
+										<label htmlFor='confirmPassword'>تایید پسورد</label>
+									</div>
+									<div className='form-floating mb-3 input-wrapper'>
+										<Button
+											isBold
+											hasBorder
+											type='submit'
+											isLoading={passwordIsLoading}
+											disabled={
+												values.newPassword === "" ||
+												values.confirmPassword === ""
+											}
+										>
+											بروزرسانی
+										</Button>
+									</div>
+								</div>
 							</Form>
 						)}
 					</Formik>

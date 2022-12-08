@@ -33,7 +33,7 @@ const Profile = ({ data }) => {
 	}, [data]);
 
 	useEffect(() => {
-		let dir = router.locale == "fa" ? "rtl" : "ltr";
+		var dir = router.locale == "fa" ? "rtl" : "ltr";
 		let lang = router.locale == "fa" ? "fa" : "en";
 		document.querySelector("body").setAttribute("dir", dir);
 		document.querySelector("body").setAttribute("lang", lang);

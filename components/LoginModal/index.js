@@ -6,6 +6,30 @@ import { Button } from "../index";
 const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 	const [isLogin, setIsLogin] = useState(true);
 	const [isReset, setIsReset] = useState(false);
+	const [showPass, setShowPass] = useState(false);
+	const [isTypingPass, setIsTypingPass] = useState(false);
+
+	const ShowPassword = (show) => {
+		return (
+			<div className='show-password' onClick={() => setShowPass((prev) => !prev)}>
+				{showPass ? (
+					<svg viewBox='0 -16 544 544' xmlns='http://www.w3.org/2000/svg'>
+						<title>Show</title>
+						<path d='M272 400Q205 400 151 361 96 322 64 256 96 190 151 151 205 112 272 112 336 112 392 153 448 193 480 256 448 319 392 360 336 400 272 400ZM272 352Q312 352 340 324 368 296 368 256 368 216 340 188 312 160 272 160 232 160 204 188 176 216 176 256 176 296 204 324 232 352 272 352ZM272 312Q249 312 233 296 216 279 216 256 216 233 233 217 249 200 272 200 295 200 312 217 328 233 328 256 328 279 312 296 295 312 272 312Z' />
+					</svg>
+				) : (
+					<svg viewBox='0 -16 544 544' xmlns='http://www.w3.org/2000/svg'>
+						<title>Hide</title>
+						<path d='M108 60L468 420 436 452 362 378Q321 400 272 400 208 400 154 361 99 322 64 256 79 229 102 202 124 174 144 160L76 92 108 60ZM368 256Q368 216 340 188 312 160 272 160L229 117Q254 112 272 112 337 112 392 152 446 192 480 256 474 269 461 288 448 307 434 322L368 256ZM272 352Q299 352 322 338L293 309Q283 312 272 312 249 312 233 296 216 279 216 256 216 247 220 236L190 206Q176 229 176 256 176 296 204 324 232 352 272 352Z' />
+					</svg>
+				)}
+			</div>
+		);
+	};
+	const initialFormValue = {
+		username: "",
+		password: "",
+	};
 
 	const loginSubmitHandler = (values) => {
 		loginHandler({ username: values.username, password: values.password });
@@ -20,24 +44,25 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 
 					<Formik
 						validationSchema={loginValidation}
-						initialValues={{
-							username: "",
-							password: "",
-						}}
+						initialValues={initialFormValue}
 						onSubmit={(values) => {
-							// same shape as initial values
 							loginSubmitHandler(values);
 						}}
 					>
-						{({ errors, touched }) => (
+						{({ values, errors, touched, setValues }) => (
 							<Form autoComplete='off'>
 								<div className='form-floating input-wrapper w-100'>
-									<Field
+									<input
 										className='form-control '
-										name='username'
 										placeholder='نام کاربری'
-										id='username'
 										autoComplete='off'
+										onChange={(e) =>
+											setValues((prev) => ({
+												...prev,
+												username: e.target.value,
+											}))
+										}
+										value={values.username}
 										type='text'
 										style={{ direction: "ltr" }}
 									/>
@@ -47,16 +72,24 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 										<span className='input-error'>{errors.username}</span>
 									)}
 								</div>
-								<div className='form-floating input-wrapper w-100'>
-									<Field
-										className='form-control'
-										name='password'
+								<div className='form-floating input-wrapper w-100 pass-wrapper'>
+									<input
+										className='form-control pass-input'
+										onChange={(e) =>
+											setValues((prev) => ({
+												...prev,
+												password: e.target.value,
+											}))
+										}
+										value={values.password}
 										placeholder='پسورد'
 										autoComplete='off'
-										id='password'
-										type='password'
+										type={showPass ? "text" : "password"}
 										style={{ direction: "ltr" }}
 									/>
+									{values.password !== "" ? (
+										<ShowPassword show={showPass} />
+									) : null}
 									<label htmlFor='password'>پسورد</label>
 
 									{errors.password && touched.password && (
@@ -75,12 +108,10 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 										بازیابی پسورد
 									</button>
 								</span> */}
-
 								<Button
 									isBold
 									hasBorder
 									isLoading={isLoginLoading}
-									disabled={isLoginLoading}
 									type='submit'
 									id='loginBtn'
 								>
@@ -90,124 +121,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 						)}
 					</Formik>
 				</div>
-				{/* Register form */}
-				{/* <div className='register-form' style={!isLogin ? { left: "0" } : { left: "-100%" }}>
-					<h4>Register</h4>
-					<div className='other-options'>
-						<button className='login-with-fb'>
-							<span className='icon fa-brands fa-facebook-square'></span>
-							Register with facebook
-						</button>
-						<button className='login-with-google'>
-							<span className='icon fa-brands fa-google'></span>
-							Register with google
-						</button>
-					</div>
-					<Formik
-						// validationSchema={RegisterValidate}
-						initialValues={{
-							name: "",
-							fname: "",
-							email: "",
-							password: "",
-							confirmPass: "",
-						}}
-						onSubmit={(values) => {
-							registerSubmitHandler(values);
-						}}
-					>
-						{({ errors, touched }) => (
-							<Form>
-								<div className='form-floating input-wrapper'>
-									<Field
-										className='form-control'
-										name='name'
-										placeholder='First Name'
-										id='name'
-										type='text'
-									/>
-									<label htmlFor='name'>First Name</label>
-									{errors.name && touched.name && (
-										<span className='input-error'>{errors.name}</span>
-									)}
-								</div>
-								<div className='form-floating input-wrapper'>
-									<Field
-										className='form-control'
-										name='fname'
-										placeholder='Last Name'
-										id='fname'
-										type='text'
-									/>
-									<label htmlFor='fname'>Last Name</label>
 
-									{errors.fname && touched.fname && (
-										<span className='input-error'>{errors.fname}</span>
-									)}
-								</div>
-								<div className='form-floating input-wrapper'>
-									<Field
-										className='form-control'
-										name='email'
-										placeholder='Email'
-										id='register-email'
-										type='text'
-									/>
-									{errors.email && touched.email && (
-										<span className='input-error'>{errors.email}</span>
-									)}
-									<label htmlFor='register-email'>Email</label>
-								</div>
-								<div className=' form-floating input-wrapper'>
-									<Field
-										className='form-control'
-										name='password'
-										placeholder='Password'
-										id='register-password'
-										type='password'
-									/>
-									<label htmlFor='register-password'>Password</label>
-
-									{errors.password && touched.password && (
-										<span className='input-error'>{errors.password}</span>
-									)}
-								</div>
-								<div className='form-floating input-wrapper'>
-									<Field
-										className='form-control'
-										name='confirmPass'
-										placeholder='ConfirmPassword'
-										id='confirmPass'
-										type='password'
-									/>
-									<label htmlFor='confirmPass'>Confrim Password</label>
-
-									{errors.confirmPass && touched.confirmPass && (
-										<span className='input-error'>{errors.confirmPass}</span>
-									)}
-								</div>
-								<span>
-									Already have an account?
-									<button
-										type='button'
-										onClick={() => setIsLogin((prev) => !prev)}
-									>
-										Login
-									</button>
-								</span>
-								<Button
-									isBold
-									hasBorder
-									// isLoading={registerIsLoading}
-									// disabled={registerIsLoading}
-									type='submit'
-								>
-									Register
-								</Button>
-							</Form>
-						)}
-					</Formik>
-				</div> */}
 				{/* Reset Password */}
 				{/* <div
 					className='reset-password-form'

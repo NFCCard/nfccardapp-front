@@ -2,18 +2,22 @@ import MainLayout from "layout/MainLayout";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Head from "next/head";
-import { useEffect } from "react";
-import AppContextProvider from "../context/AppContextProvider";
+import { useContext, useEffect } from "react";
+import AppContextProvider, { AppContext } from "../context/AppContextProvider";
 import { appWithTranslation } from "next-i18next";
 import "flag-icon-css/css/flag-icons.min.css";
 import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import "styles/globals.scss";
-
+import "api/interceptor";
+import Cookies from "js-cookie";
+import getSingleProfile from "api/get/getSingleProfile";
 function MyApp({ Component, pageProps }) {
 	const queryClient = new QueryClient();
-
 	useEffect(() => {
 		import("bootstrap/dist/js/bootstrap");
+		if (JSON.parse(Cookies.get("_s")) !== {}) {
+			getSingleProfile({ username: JSON.parse(Cookies.get("_s"))?.userInfo?.username });
+		}
 	}, []);
 
 	return (
@@ -26,6 +30,7 @@ function MyApp({ Component, pageProps }) {
 					<MainLayout>
 						<Component {...pageProps} />
 						<ToastContainer
+							style={{ zIndex: 999999999 }}
 							position='top-right'
 							theme='dark'
 							autoClose={2000}

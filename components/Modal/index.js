@@ -14,6 +14,7 @@ function CustomModal({ children, isOpen, onClose, title, className, ...attr }) {
 			portalClassName='portal'
 			overlayClassName='bk-modal-backdrop'
 			shouldCloseOnEsc
+			style={{ inset: "unset" }}
 		>
 			<CSSTransition
 				timeout={300000}
