@@ -212,3 +212,23 @@ body[dir="rtl"] #LoginModal .modal-body .login-form {
 		}
 	}
 }
+.pass-wrapper {
+	.pass-input {
+		position: relative;
+		padding-right: 50px;
+	}
+	.show-password {
+		position: absolute;
+		top: 80%;
+		right: 10px;
+		transform: translateY(-80%);
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		svg {
+			fill: $gray-color;
+			width: 30px;
+			height: 30px;
+		}
+	}
+}

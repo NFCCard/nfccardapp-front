@@ -1,3 +1,4 @@
 import updateProfile from "./updateProfile";
-const patch = { updateProfile };
+import updatePassword from "./updatePassword";
+const patch = { updateProfile, updatePassword };
 export default patch;

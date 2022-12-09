@@ -26,20 +26,22 @@ const Button = ({
 		padding: 0.5rem 1rem;
 		border-radius: 12px;
 		height: 40px;
+		opacity: ${(props) => (props.disabled ? "0.8" : "1")};
 	`;
 
 	return (
 		<Button
-			onClick={!disabled && onClick}
+			onClick={onClick ? onClick : null}
 			type={type}
 			style={style}
+			disabled={disabled}
 			className={className}
 			buttonType={buttonType}
 			{...props}
 		>
 			{isLoading ? (
 				<div className='btn-loader-wrapper'>
-					<div class='btn-loader'>
+					<div className='btn-loader'>
 						<div></div>
 						<div></div>
 						<div></div>

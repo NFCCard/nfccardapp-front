@@ -39,7 +39,7 @@ const useLogin = () => {
 			}));
 			Toastify("success", "با موفقیت وارد شدید");
 			setTimeout(() => {
-				window.location.reload();
+				window.location.replace(`/${JSON.parse(Cookies.get("_s"))?.userInfo?.username}`);
 			}, 2000);
 		},
 	});

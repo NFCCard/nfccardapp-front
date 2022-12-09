@@ -101,7 +101,18 @@
 			}
 		}
 	}
-
+	.password-secion {
+		h2 {
+			color: $white-color;
+			font-weight: bold;
+			text-align: center;
+			font-size: 2.5rem;
+			margin-bottom: 20px;
+		}
+		button {
+			width: 100%;
+		}
+	}
 	.input-wrapper {
 		width: 50%;
 		margin: 0 auto;

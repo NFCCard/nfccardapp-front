@@ -15,8 +15,7 @@ import { useContext, useEffect, useState } from "react";
 import { icons } from "values";
 import { socialMediaColors } from "values/colors";
 import { AppContext } from "../../context/AppContextProvider";
-import { useCreateVcf } from "../../hooks/User/useVCF";
-import defaultAvatar from "/public/assets/images/user.png";
+
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Profile = ({ data }) => {
@@ -34,7 +33,7 @@ const Profile = ({ data }) => {
 	}, [data]);
 
 	useEffect(() => {
-		let dir = router.locale == "fa" ? "rtl" : "ltr";
+		var dir = router.locale == "fa" ? "rtl" : "ltr";
 		let lang = router.locale == "fa" ? "fa" : "en";
 		document.querySelector("body").setAttribute("dir", dir);
 		document.querySelector("body").setAttribute("lang", lang);
@@ -89,8 +88,12 @@ const Profile = ({ data }) => {
 											/>
 										</svg>
 										<img
-											src={user.resource ? user.resource.url : defaultAvatar}
-											alt=''
+											src={
+												user.resource
+													? user.resource.url
+													: "/assets/images/user.png"
+											}
+											alt={user.first_name.en + user.last_name.en}
 											className='avatar'
 										/>
 									</div>

@@ -29,9 +29,9 @@
 			position: absolute;
 			top: 80px;
 			left: 50px;
+			object-fit: fill;
 			width: 270px;
 			height: 250px;
-			object-fit: fill;
 			border-radius: 33% 67% 32% 68% / 40% 22% 78% 60%;
 		}
 		.description-col {
@@ -142,7 +142,7 @@ body[dir="rtl"] .profile {
 		.avatar {
 			position: absolute;
 			top: 80px;
-			right: 50px;
+			right: 80px;
 			width: 270px;
 			height: 250px;
 			object-fit: fill;
