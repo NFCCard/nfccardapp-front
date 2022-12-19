@@ -15,7 +15,7 @@ axios.interceptors.response.use(
 		return response;
 	},
 	function (error) {
-		if (error.response.data.code === 1006) {
+		if (error.response.data?.code === 1006) {
 			Cookies.remove("_s");
 			window.location.replace("/");
 		}

@@ -260,7 +260,7 @@ const Home = () => {
 			</div>
 
 			{/* review section */}
-			<section className='container review-section'>
+			<section className='review-section'>
 				<h3>
 					نظرات <span className='color-orange'>مشتریان</span>
 				</h3>
@@ -268,18 +268,17 @@ const Home = () => {
 				<Swiper
 					slidesPerView={4}
 					spaceBetween={40}
+					navigation={true}
+					modules={[Pagination, Navigation]}
+					className='mySwiper2'
 					breakpoints={{
 						"@0.00": {
 							slidesPerView: 1,
 							spaceBetween: 10,
 						},
-						"@0.50": {
-							slidesPerView: 1,
-							spaceBetween: 20,
-						},
 						"@0.75": {
 							slidesPerView: 2,
-							spaceBetween: 30,
+							spaceBetween: 20,
 						},
 						"@1.00": {
 							slidesPerView: 3,
@@ -290,9 +289,6 @@ const Home = () => {
 							spaceBetween: 50,
 						},
 					}}
-					navigation={true}
-					modules={[Pagination, Navigation]}
-					className='mySwiper2'
 				>
 					{reviews.map((review) => (
 						<SwiperSlide key={review.id}>
@@ -318,7 +314,6 @@ const Home = () => {
 					<i className='fas fa-user usericon'></i>
 				</FloatingButton>
 			)}
-
 			<Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)}>
 				<LoginModal
 					loginHandler={(val) => loginHandler(val)}

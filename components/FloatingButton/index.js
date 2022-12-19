@@ -32,7 +32,7 @@ const SpanButton = styled.span`
 	color: #fff;
 	width: 70px;
 	height: 70px;
-	line-height: 3;
+	line-height: 4;
 	border-radius: 100%;
 
 	::after {

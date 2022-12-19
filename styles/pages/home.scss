@@ -52,9 +52,8 @@
 			border-radius: 12px;
 		}
 		.swiper {
-			width: 80%;
-			max-width: 500px;
-			height: 400px;
+			width: 100%;
+			max-width: 400px;
 		}
 		@media (min-width: 1024px) {
 			overflow: unset;
@@ -178,6 +177,9 @@ body[dir="rtl"] .Hero {
 	}
 }
 .review-section {
+	padding-top: 5rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
 	h3 {
 		color: $white-color;
 		font-size: 2rem;

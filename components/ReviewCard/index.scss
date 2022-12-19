@@ -1,6 +1,5 @@
 .review-card {
 	@include glass();
-	height: 350px;
 	width: 100%;
 	padding: 1rem;
 	color: $white-color;
@@ -32,8 +31,6 @@
 @media (min-width: 767px) {
 	.review-card {
 		@include glass();
-		min-height: fit-content;
-		width: 300px;
 		padding: 2rem;
 	}
 }
