@@ -1,10 +1,13 @@
+@import "../root.scss";
 .not-found-page {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: calc(100vh - 200px);
-	padding: 5rem;
-	.animation-wrapper {
-		width: 100%;
+	height: calc(100vh);
+	color: $white-color;
+	gap: 10px;
+	h3 {
+		color: $white-color;
 	}
 }

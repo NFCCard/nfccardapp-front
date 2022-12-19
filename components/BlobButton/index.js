@@ -4,11 +4,24 @@ import styled from "styled-components";
 const Blob = styled.span`
 	background-color: ${(props) => props.backgroundColor} !important;
 `;
-const BlobButton = ({ backgroundColor, children, isLink, link, style, onClick }) => {
+const BlobButton = ({
+	backgroundColor,
+	children,
+	isLink,
+	link,
+	style,
+	onClick,
+	isTargetBlank = true,
+}) => {
 	return (
 		<>
 			{isLink ? (
-				<a href={link} target='blank' className='blob-btn' style={style}>
+				<a
+					href={link}
+					target={isTargetBlank && "_blank"}
+					className='blob-btn'
+					style={style}
+				>
 					{children}
 					<span className='blob-btn__inner'>
 						<span className='blob-btn__blobs'>
