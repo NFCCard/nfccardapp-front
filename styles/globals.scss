@@ -125,7 +125,7 @@ body[dir="ltr"] .usericon {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(calc(-50% + -10px), calc(-50% + -2px));
 	width: 20px;
 	height: 20px;
 }

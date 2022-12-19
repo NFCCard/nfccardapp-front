@@ -12,7 +12,6 @@
 		color: $dark-color;
 		position: relative;
 		overflow-x: hidden;
-		padding: 1rem;
 		height: 300px;
 		.user-role {
 			width: 73%;
@@ -96,11 +95,13 @@
 				padding: 1rem;
 			}
 			form {
-				width: 80%;
+				width: 100%;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				padding: 1rem;
+				@media (min-width: 425px) {
+					width: 80%;
+				}
 				.input-wrapper {
 					margin-bottom: 1rem;
 					.form-control {
