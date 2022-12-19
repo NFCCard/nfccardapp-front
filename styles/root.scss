@@ -22,6 +22,8 @@ html {
 }
 
 @mixin glass() {
+	width: 90%;
+	margin: 0 auto;
 	border-radius: 25px;
 	background: rgba($gray-color, 0.6);
 	border: 2px solid rgba(255, 255, 255, 0.1);

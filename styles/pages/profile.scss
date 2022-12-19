@@ -1,7 +1,9 @@
 .profile {
 	margin-top: 7rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 	.information {
-		margin-top: 3rem;
 		position: relative;
 	}
 	.avatar-container {
@@ -17,18 +19,18 @@
 		}
 
 		svg {
-			width: 350px;
-			height: 350px;
+			width: 340px;
+			height: 340px;
 			fill: $orange-color;
-			@media (min-width: 1024px) {
+			@media (min-width: 768px) {
 				width: 400px;
 				height: 400px;
 			}
 		}
 		.avatar {
 			position: absolute;
-			top: 80px;
-			left: 50px;
+			top: 70px;
+			left: 70px;
 			object-fit: fill;
 			width: 270px;
 			height: 250px;
@@ -39,7 +41,11 @@
 				font-weight: bold;
 				font-size: 2rem;
 				color: $white-color;
+				text-align: center;
 				animation: myAnim 1s ease 0s 1 normal forwards;
+				@media (min-width: 768px) {
+					text-align: left;
+				}
 				span {
 					font-weight: bold;
 					font-size: 2rem;
@@ -66,14 +72,17 @@
 		}
 	}
 	.calling {
-		margin-top: 2rem;
+		padding: 2rem;
 		@include glass;
+		.blob-btn {
+			max-width: unset;
+		}
 		.calling-info {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			h4 {
-				font-size: 2rem;
+				font-size: 1rem;
 				font-weight: bold;
 				color: $white-color;
 				padding-top: 1rem;
@@ -92,19 +101,19 @@
 	}
 	.social {
 		@include glass;
-		margin-top: 2rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		padding: 2rem;
+
 		h3 {
-			font-size: 2rem;
+			font-size: 1rem;
 			font-weight: bold;
 			color: $white-color;
 			padding-top: 1rem;
 			padding-bottom: 1rem;
 		}
 		.socailmedias {
-			padding: 2rem;
 			display: flex;
 			gap: 20px;
 			flex-wrap: wrap;
@@ -113,9 +122,7 @@
 }
 
 body[dir="rtl"] .profile {
-	margin-top: 7rem;
 	.information {
-		margin-top: 3rem;
 		position: relative;
 	}
 	.avatar-container {
@@ -129,24 +136,20 @@ body[dir="rtl"] .profile {
 				flex-direction: row;
 			}
 		}
-
-		svg {
-			width: 350px;
-			height: 350px;
-			fill: $orange-color;
-			@media (min-width: 1024px) {
-				width: 400px;
-				height: 400px;
-			}
-		}
 		.avatar {
 			position: absolute;
-			top: 80px;
-			right: 80px;
-			width: 270px;
+			top: 70px;
+			right: 10px;
+			width: 250px;
 			height: 250px;
 			object-fit: fill;
 			border-radius: 33% 67% 32% 68% / 40% 22% 78% 60%;
+			@media (min-width: 480px) {
+				top: 70px;
+				right: 70px;
+				width: 270px;
+				height: 270px;
+			}
 		}
 		.description-col {
 			h3 {
@@ -154,6 +157,9 @@ body[dir="rtl"] .profile {
 				font-size: 2rem;
 				color: $white-color;
 				animation: myAnim 1s ease 0s 1 normal forwards;
+				@media (min-width: 768px) {
+					text-align: right;
+				}
 				span {
 					font-weight: bold;
 					font-size: 2rem;
@@ -177,51 +183,6 @@ body[dir="rtl"] .profile {
 					text-align: right;
 				}
 			}
-		}
-	}
-	.calling {
-		margin-top: 2rem;
-		@include glass;
-		.calling-info {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			h4 {
-				font-size: 2rem;
-				font-weight: bold;
-				color: $white-color;
-				padding-top: 1rem;
-				padding-bottom: 1rem;
-			}
-			.calling-buttons {
-				display: flex;
-				gap: 20px;
-				padding-bottom: 1rem;
-				flex-wrap: wrap;
-				@media (min-width: 767px) {
-					margin-bottom: 2rem;
-				}
-			}
-		}
-	}
-	.social {
-		@include glass;
-		margin-top: 2rem;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		h3 {
-			font-size: 2rem;
-			font-weight: bold;
-			color: $white-color;
-			padding-top: 1rem;
-			padding-bottom: 1rem;
-		}
-		.socailmedias {
-			padding: 2rem;
-			display: flex;
-			gap: 20px;
-			flex-wrap: wrap;
 		}
 	}
 }
