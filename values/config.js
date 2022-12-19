@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.wosite.ir/api/";
+const BASE_URL = "https://api.nfccardapp.ir/api/";
 
 const config = {
 	BASE_URL,
