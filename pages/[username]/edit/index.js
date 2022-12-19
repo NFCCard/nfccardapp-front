@@ -148,7 +148,6 @@ const EditProfile = ({ data }) => {
 		if (values.newPassword !== values.confirmPassword) {
 			return Toastify("error", "پسورد ها مطابقت ندارن", "currentPass_error");
 		}
-		console.log(values);
 		passwordMutate({ id: storage.userInfo.id, values });
 	};
 	return (

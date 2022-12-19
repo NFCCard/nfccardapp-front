@@ -31,13 +31,13 @@ function MyApp({ Component, pageProps }) {
 						<Component {...pageProps} />
 						<ToastContainer
 							style={{ zIndex: 999999999 }}
-							position='top-right'
+							position='top-center'
 							theme='dark'
 							autoClose={2000}
 							hideProgressBar={false}
 							newestOnTop={false}
 							closeOnClick
-							rtl={false}
+							rtl={true}
 							pauseOnFocusLoss
 							draggable
 							pauseOnHover

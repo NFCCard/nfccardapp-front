@@ -29,7 +29,10 @@ const useLogin = () => {
 	return useMutation(api.post.login, {
 		onError: (error, variables, context) => {
 			// An error happened!
-			Toastify("error", error.response.data.message);
+			if (error.response.status === 422) {
+				return Toastify("error", "نام کاربری یا گذرواژه اشتباه است");
+			}
+			return Toastify("error", error.response.data.message);
 		},
 		onSuccess: (data, variables, context) => {
 			setStorage((prev) => ({

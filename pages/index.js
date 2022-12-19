@@ -110,7 +110,6 @@ const Home = () => {
 			preserveAspectRatio: "xMidYMid slice",
 		},
 	};
-
 	const loginHandler = (val) => {
 		loginMutate(val);
 	};

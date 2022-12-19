@@ -249,7 +249,6 @@ const Profile = ({ data }) => {
 export async function getServerSideProps(context) {
 	let data = null;
 	let notFound = false;
-	console.log(context);
 	try {
 		data = await api.get.getSingleProfile({ username: context.query.username });
 	} catch (error) {

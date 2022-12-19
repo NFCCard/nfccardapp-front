@@ -14,13 +14,13 @@ export default function Document() {
 با پروفایل کاربری انحصاری '
 				/>
 
-				<meta itemprop='name' content='NFC Card | صفحه اصلی' />
+				<meta itemProp='name' content='NFC Card | صفحه اصلی' />
 				<meta
-					itemprop='description'
+					itemProp='description'
 					content='خرید کارت ویزیت هوشمند با استفاده تکنولوژی nfc 
 با پروفایل کاربری انحصاری '
 				/>
-				<meta itemprop='image' content='http://nfccardapp.ir/favicon.ico' />
+				<meta itemProp='image' content='http://nfccardapp.ir/favicon.ico' />
 
 				<meta property='og:url' content='http://nfccardapp.ir' />
 				<meta property='og:type' content='website' />
