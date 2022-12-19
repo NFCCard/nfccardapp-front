@@ -253,7 +253,7 @@ const Home = () => {
 					backgroundColor='#14a76c'
 					style={{ width: "60%", margin: "10px auto" }}
 					isLink
-					link='https://wa.me/989027165900?text=%D8%B3%D9%84%D8%A7%D9%85'
+					link={"https://wa.me/989027165900?text=%D8%B3%D9%84%D8%A7%D9%85"}
 				>
 					سفارش کارت
 				</BlobButton>

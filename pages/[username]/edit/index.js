@@ -411,7 +411,7 @@ const EditProfile = ({ data }) => {
 									</h2>
 									<div className='social-medias mt-3'>
 										{socialMedias.map((sm, i) => (
-											<div className='form-floating mb-3 w-100' key={i}>
+											<div className='form-floating mb-3 w-100 ' key={i}>
 												<Field
 													style={{ direction: "ltr" }}
 													type='text'

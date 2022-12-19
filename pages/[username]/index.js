@@ -223,6 +223,21 @@ const Profile = ({ data }) => {
 							</Modal>
 						</>
 					)}
+					{!isUserLoggedIn && (
+						<FloatingButton
+							onClick={() => setIsLoginModalOpen(true)}
+							position={{ top: "50%", left: "auto", right: "-30px", bottom: "0" }}
+							backgroundColor='#ff652f'
+						>
+							<i className='fas fa-user usericon'></i>
+						</FloatingButton>
+					)}
+					<Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)}>
+						<LoginModal
+							loginHandler={(val) => loginHandler(val)}
+							isLoginLoading={loginIsLoading}
+						/>
+					</Modal>
 				</>
 			) : (
 				<Loading />

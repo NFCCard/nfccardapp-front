@@ -6,7 +6,7 @@ const nextConfig = {
 	swcMinify: true,
 	i18n,
 	images: {
-		domains: ["api.wosite.ir"],
+		domains: ["api.nfccardapp.ir"],
 	},
 };
 

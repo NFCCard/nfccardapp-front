@@ -24,7 +24,7 @@ const Button = ({
 				: "#ff652f"};
 		color: #fff;
 		padding: 0.5rem 1rem;
-		border-radius: 12px;
+		border-radius: 0.375rem;
 		height: 40px;
 		opacity: ${(props) => (props.disabled ? "0.8" : "1")};
 	`;
