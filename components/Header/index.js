@@ -7,14 +7,6 @@ import { useGetProfile, useGetProfileMutate } from "../../hooks/User/useProfile"
 import Cookies from "js-cookie";
 import { AppContext } from "../../context/AppContextProvider";
 import Link from "next/link";
-
-const HeaderSection = styled.section`
-	width: 100%;
-	padding: 1rem 2rem;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-`;
 const Header = () => {
 	const { isUserLoggedIn } = useAuth();
 	const { storage } = useContext(AppContext);
@@ -30,7 +22,7 @@ const Header = () => {
 		}
 	}, [isUserLoggedIn, data]);
 	return (
-		<HeaderSection>
+		<div className='w-100 px-2 py-1 d-flex flex-column-reverse align-items-center flex-md-row justify-content-md-between '>
 			<NavbarDropDown isUserLoggedIn={!isLoading} user={user} />
 			<Link href='/'>
 				<a style={{ curser: "pointer" }}>
@@ -43,7 +35,7 @@ const Header = () => {
 					/>
 				</a>
 			</Link>
-		</HeaderSection>
+		</div>
 	);
 };
 

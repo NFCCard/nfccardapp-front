@@ -5,7 +5,7 @@ export { default as Modal } from "./Modal";
 export { default as FloatingButton } from "./FloatingButton";
 export { default as Button } from "./Button";
 export { default as LoginModal } from "./LoginModal";
-export { default as LogoutModal } from "./LogoutModal";
+export { default as LogoutModal } from "./logoutModal";
 export { default as Table } from "./Table";
 export { default as Pagination } from "./Pagination";
 export { default as ReviewCard } from "./ReviewCard";

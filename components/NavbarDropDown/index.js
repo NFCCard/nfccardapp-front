@@ -50,37 +50,27 @@ function NavbarDropDown({ isUserLoggedIn, user }) {
 								<span>{user?.name}</span>
 							</div>
 						</button>
-						{isUserLoggedIn && (
-							<ul className='dropdown-menu w-100 p-0'>
-								<li className='p-1'>
-									<Link href={`/${storage?.userInfo?.username}`}>
-										<a className='text-decoration-none text-dark'>پروفایل</a>
-									</Link>
-								</li>
-								<li className='p-1'>
-									<Link href={`/${storage?.userInfo?.username}/edit`}>
-										<a className='text-decoration-none text-dark'>
-											ویرایش پروفایل
-										</a>
-									</Link>
-								</li>
-								{/* 
-								<li>
-									<a className='dropdown-item' href='#'>
-										تغییر گذرواژه
-									</a>
-								</li> */}
-								<hr className='m-0' />
-								<li className='p-1'>
-									<button
-										className='btn btn-outline-danger w-100'
-										onClick={() => setIsLogoutModalOpen(true)}
-									>
-										خروج
-									</button>
-								</li>
-							</ul>
-						)}
+						<ul className='dropdown-menu w-100 p-0'>
+							<li className='p-1'>
+								<Link href={`/${storage?.userInfo?.username}`}>
+									<a className='text-decoration-none text-dark'>پروفایل</a>
+								</Link>
+							</li>
+							<li className='p-1'>
+								<Link href={`/${storage?.userInfo?.username}/edit`}>
+									<a className='text-decoration-none text-dark'>ویرایش پروفایل</a>
+								</Link>
+							</li>
+							<hr className='m-0' />
+							<li className='p-1'>
+								<button
+									className='btn btn-outline-danger w-100'
+									onClick={() => setIsLogoutModalOpen(true)}
+								>
+									خروج
+								</button>
+							</li>
+						</ul>
 					</div>
 				) : (
 					<button
