@@ -187,7 +187,7 @@ const Profile = ({ data }) => {
 						) : null}
 					</main>
 
-					{storage.userInfo && router.query.username === storage.userInfo.username && (
+					{/* {storage.userInfo && router.query.username === storage.userInfo.username && (
 						<>
 							<FloatingButton
 								onClick={floatingButtonOnClick}
@@ -222,8 +222,8 @@ const Profile = ({ data }) => {
 								/>
 							</Modal>
 						</>
-					)}
-					{!isUserLoggedIn && (
+					)} */}
+					{/* {!isUserLoggedIn && (
 						<FloatingButton
 							onClick={() => setIsLoginModalOpen(true)}
 							position={{ top: "50%", left: "auto", right: "-30px", bottom: "0" }}
@@ -231,7 +231,7 @@ const Profile = ({ data }) => {
 						>
 							<i className='fas fa-user usericon'></i>
 						</FloatingButton>
-					)}
+					)} */}
 					<Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)}>
 						<LoginModal
 							loginHandler={(val) => loginHandler(val)}
