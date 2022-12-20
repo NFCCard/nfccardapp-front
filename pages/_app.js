@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 import AppContextProvider, { AppContext } from "../context/AppContextProvider";
 import { appWithTranslation } from "next-i18next";
 import "flag-icon-css/css/flag-icons.min.css";
+import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import "styles/globals.scss";
 import "api/interceptor";

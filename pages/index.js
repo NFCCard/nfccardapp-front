@@ -76,17 +76,10 @@ const Home = () => {
 		},
 	];
 	const [showTooltip, setShowTooltip] = useState(true);
-	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-	const { mutate: loginMutate, isLoading: loginIsLoading, status: loginStatus } = useLogin();
 	const { isUserLoggedIn } = useAuth();
 	const { storage, setStorage } = useContext(AppContext);
 	const router = useRouter();
 
-	useEffect(() => {
-		if (loginStatus === "success") {
-			setIsLoginModalOpen(false);
-		}
-	}, [loginStatus]);
 	useEffect(() => {
 		let dir = router.locale == "fa" ? "rtl" : "rtl";
 		let lang = router.locale == "fa" ? "fa" : "fa";
@@ -110,9 +103,7 @@ const Home = () => {
 			preserveAspectRatio: "xMidYMid slice",
 		},
 	};
-	const loginHandler = (val) => {
-		loginMutate(val);
-	};
+
 	return (
 		<>
 			<Head>
@@ -296,29 +287,6 @@ const Home = () => {
 					))}
 				</Swiper>
 			</section>
-			{!isUserLoggedIn ? (
-				<FloatingButton
-					onClick={() => setIsLoginModalOpen(true)}
-					position={{ top: "50%", left: "auto", right: "-30px", bottom: "0" }}
-					backgroundColor='#ff652f'
-				>
-					<i className='fas fa-user usericon'></i>
-				</FloatingButton>
-			) : (
-				<FloatingButton
-					position={{ top: "50%", left: "auto", right: "-30px", bottom: "0" }}
-					backgroundColor='#ff652f'
-					link={`${storage.userInfo.username}`}
-				>
-					<i className='fas fa-user usericon'></i>
-				</FloatingButton>
-			)}
-			<Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)}>
-				<LoginModal
-					loginHandler={(val) => loginHandler(val)}
-					isLoginLoading={loginIsLoading}
-				/>
-			</Modal>
 		</>
 	);
 };

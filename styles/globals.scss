@@ -110,9 +110,16 @@ body[dir="ltr"] .usericon {
 	background-color: $orange-color;
 	padding: 0.5rem 1rem;
 	color: $white-color;
-	border-radius: 12px;
-	&:hover {
-		color: $white-color;
+	border-radius: 6px;
+	outline: 0;
+	border: 0;
+	transition: all 200ms linear;
+	&:hover,
+	&:active,
+	&:visited,
+	&:focus {
+		background-color: $white-color !important;
+		color: $dark-color !important;
 	}
 }
 .btn-loader-wrapper {

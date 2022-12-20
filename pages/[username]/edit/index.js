@@ -419,7 +419,7 @@ const EditProfile = ({ data }) => {
 													placeholder={sm.name}
 													name={sm.name}
 												/>
-												<label htmlFor={sm.name}>{sm.name}</label>
+												<label htmlFor={sm.name}>{sm.name} (url)</label>
 											</div>
 										))}
 									</div>
