@@ -22,7 +22,7 @@ const Header = () => {
 		}
 	}, [isUserLoggedIn, data]);
 	return (
-		<div className='w-100 px-2 py-1 d-flex flex-column-reverse align-items-center flex-md-row justify-content-md-between '>
+		<div className='w-100 px-5 py-1 d-flex flex-column-reverse align-items-center flex-md-row justify-content-md-between '>
 			<NavbarDropDown isUserLoggedIn={!isLoading} user={user} />
 			<Link href='/'>
 				<a style={{ curser: "pointer" }}>
