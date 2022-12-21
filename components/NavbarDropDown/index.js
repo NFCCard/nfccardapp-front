@@ -13,6 +13,7 @@ function NavbarDropDown({ isUserLoggedIn, user }) {
 	const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 	const { mutate: loginMutate, isLoading: loginIsLoading, status: loginStatus } = useLogin();
 	const { storage } = useContext(AppContext);
+
 	useEffect(() => {
 		if (loginStatus === "success") {
 			setIsLoginModalOpen(false);
@@ -29,7 +30,7 @@ function NavbarDropDown({ isUserLoggedIn, user }) {
 	return (
 		<>
 			<NavbarDropDownWrapper>
-				{isUserLoggedIn ? (
+				{isUserLoggedIn && user ? (
 					<div className='dropdown'>
 						<button
 							className='btn-main'
