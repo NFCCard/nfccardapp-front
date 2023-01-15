@@ -17,7 +17,7 @@ const Header = () => {
 		if (data) {
 			setUser({
 				name: `${data?.data.profile.first_name.fa} ${data?.data.profile.last_name.fa}`,
-				avatar: data?.data?.profile?.resource.url,
+				avatar: data?.data?.profile?.resource?.url || "/assets/images/user.png",
 			});
 		}
 	}, [isUserLoggedIn, data]);
