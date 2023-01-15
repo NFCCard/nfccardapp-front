@@ -8,7 +8,7 @@ export default axios.create({
 		Authorization: `${
 			Cookies.get(constants.STORAGE)
 				? `Bearer ${JSON.parse(Cookies.get(constants.STORAGE)).accessToken}`
-				: ""
+				: "1"
 		}`,
 		Accept: "application/json",
 	},

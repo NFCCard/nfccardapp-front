@@ -13,5 +13,7 @@ const socialMediaColors = [
 	{ name: "spotify", color: "#1DB954" },
 	{ name: "soundcloud", color: "#F26F23" },
 	{ name: "twitch", color: "#9146FF" },
+	{ name: "github", color: "#171515" },
+	{ name: "website", color: "#999999" },
 ];
 export { colors, socialMediaColors };

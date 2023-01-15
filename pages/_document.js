@@ -40,6 +40,10 @@ export default function Document() {
 با پروفایل کاربری انحصاری '
 				/>
 				<meta name='twitter:image' content='http://nfccardapp.ir/favicon.ico' />
+				<meta
+					name='google-site-verification'
+					content='9tjys-AXYZMQo6eFqDE1uqL6naLk_s7JZ2_TpTzG7Z4'
+				/>
 			</Head>
 			<body>
 				<Main />

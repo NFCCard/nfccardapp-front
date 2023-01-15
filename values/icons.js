@@ -12,5 +12,8 @@ const icons = {
 	spotify: "fab fa-spotify",
 	soundcloud: "fab fa-soundcloud",
 	twitch: "fab fa-twitch",
+	github:"fab fa-github",
+	website:"far fa-globe",
+
 };
 export default icons;
