@@ -1,10 +1,8 @@
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
 import NavbarDropDown from "../NavbarDropDown";
 import { useAuth } from "hooks/Auth/useAuth";
-import { useGetProfile, useGetProfileMutate } from "../../hooks/User/useProfile";
-import Cookies from "js-cookie";
+import { useGetProfile } from "../../hooks/User/useProfile";
 import { AppContext } from "../../context/AppContextProvider";
 import Link from "next/link";
 const Header = () => {

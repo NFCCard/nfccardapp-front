@@ -8,18 +8,6 @@ $orange-color: #ff652f;
 $dark-color: #282a30;
 $green-color: #14a76c;
 
-*,
-html {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	scroll-behavior: smooth !important;
-	user-select: none;
-	font-size: 14px;
-	&::-webkit-scrollbar {
-		display: none;
-	}
-}
 
 @mixin glass() {
 	width: 90%;

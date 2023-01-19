@@ -105,7 +105,7 @@ const Home = () => {
 	};
 
 	return (
-		<>
+		<main>
 			<Head>
 				<title>NFC Card | صفحه اصلی</title>
 			</Head>
@@ -287,7 +287,7 @@ const Home = () => {
 					))}
 				</Swiper>
 			</section>
-		</>
+		</main>
 	);
 };
 
