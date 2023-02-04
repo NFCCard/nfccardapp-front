@@ -27,10 +27,7 @@ module.exports = {
 			alternateRefs: config.alternateRefs ?? [],
 		};
 	},
-	additionalSitemaps: [
-		`https://nfccardapp.ir/sitemap.xml`,
-		`https://nfccardapp.ir/server-sitemap.xml`,
-	],
+	additionalSitemaps: [`https://nfccardapp.ir/sitemap.xml`],
 	robotsTxtOptions: {
 		policies: [
 			{
