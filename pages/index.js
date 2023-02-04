@@ -107,7 +107,7 @@ const Home = () => {
 	return (
 		<>
 			<Head>
-				<title>NFC Card | صفحه اصلی</title>
+				<title>NFC Card | کارت هوشمند NFC</title>
 			</Head>
 			<div className='Hero'>
 				<div className='container info-wrapper'>
