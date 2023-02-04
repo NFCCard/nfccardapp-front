@@ -12,7 +12,9 @@ const profile = {
 	uploadResource: `${config.BASE_URL}core/upload/resource`,
 	uploadAvatar: `${config.BASE_URL}core/profiles/`,
 };
-const admin = {};
+const admin = {
+	getUserList: `${config.BASE_URL}core/users?include_filter=profile`,
+};
 
 const routes = { auth, profile, admin };
 
