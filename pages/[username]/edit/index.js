@@ -12,6 +12,8 @@ import { AppContext } from "../../../context/AppContextProvider";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUpdatePassword } from "../../../hooks/User/useProfile";
+import { useAuth } from "../../../hooks/Auth/useAuth";
+
 const socialMedias = [
 	{
 		name: "telegram",
@@ -73,11 +75,12 @@ const EditProfile = ({ data }) => {
 	const { mutate: updateProfile, isLoading } = useUpdateProfile();
 	const { mutate: uploadImage, isLoading: isImageUploading } = useUploadImage();
 	const { mutate: passwordMutate, isLoading: passwordIsLoading } = useUpdatePassword();
-
-	const { storage, setStorage } = useContext(AppContext);
 	const router = useRouter();
+	const { isUserLoggedIn, isLoading: isCheckUserLoggedIn } = useAuth();
+	const { storage, setStorage } = useContext(AppContext);
 
 	useEffect(() => {
+		if (Cookies.get("_s") === "{}") router.push(`/${router.query.username}`);
 		setUser(data.data);
 	}, [data]);
 	let dir;
