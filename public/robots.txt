@@ -1,0 +1,16 @@
+# *
+User-agent: *
+Disallow: /404
+Disallow: /500
+Disallow: /customcard
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nfccardapp.ir
+
+# Sitemaps
+Sitemap: https://nfccardapp.ir/sitemap.xml
+Sitemap: https://nfccardapp.ir/server-sitemap.xml

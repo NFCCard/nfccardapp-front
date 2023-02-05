@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start -p 3606",
 		"lint": "next lint",
-		"postbuild": "next-sitemap"
+		"sitemap": "next-sitemap --config next-sitemap.config.js"
 
 	},
 	"dependencies": {
