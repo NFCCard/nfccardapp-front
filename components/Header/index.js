@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import NavbarDropDown from "../NavbarDropDown";
+import LanguageChanger from "../LanguageChanger";
 import { useAuth } from "hooks/Auth/useAuth";
 import { useGetProfile, useGetProfileMutate } from "../../hooks/User/useProfile";
 import Cookies from "js-cookie";
@@ -23,18 +24,23 @@ const Header = () => {
 	}, [isUserLoggedIn, data]);
 	return (
 		<div className='w-100 px-5 py-1 d-flex flex-column-reverse align-items-center flex-md-row justify-content-md-between '>
-			<NavbarDropDown isUserLoggedIn={!isLoading} user={user} />
-			<Link href='/'>
-				<a style={{ curser: "pointer" }}>
-					<Image
-						src='/assets/images/logo.png'
-						alt='logo'
-						width='100px'
-						height='50px'
-						objectFit='contain'
-					/>
-				</a>
-			</Link>
+			<div className='d-flex align-items-center'>
+				<NavbarDropDown isUserLoggedIn={!isLoading} user={user} />
+				<LanguageChanger />
+			</div>
+			<div>
+				<Link href='/'>
+					<a style={{ curser: "pointer" }}>
+						<Image
+							src='/assets/images/logo.png'
+							alt='logo'
+							width='100px'
+							height='50px'
+							objectFit='contain'
+						/>
+					</a>
+				</Link>
+			</div>
 		</div>
 	);
 };
