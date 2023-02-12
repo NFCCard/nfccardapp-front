@@ -3,5 +3,11 @@
 	"phone_number": "شماره تماس",
 	"email": "ایمیل",
 	"add_contact": "افزودن به مخاطبین",
-	"social_medias": "شبکه ها اجتماعی"
+	"social_medias": "شبکه ها اجتماعی",
+	"login": "ورود به حساب کاربری",
+	"profile": "حساب کاربری",
+	"edit_profile": "ویرایش پروفایل",
+	"exit": "خروج",
+	"user_name": "نام کاربری",
+	"password": "رمز عبور"
 }

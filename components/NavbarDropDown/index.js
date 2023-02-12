@@ -7,12 +7,24 @@ import Link from "next/link";
 import { AppContext } from "../../context/AppContextProvider";
 import LogoutModal from "../logoutModal";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 function NavbarDropDown({ isUserLoggedIn, user }) {
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 	const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 	const { mutate: loginMutate, isLoading: loginIsLoading, status: loginStatus } = useLogin();
 	const { storage } = useContext(AppContext);
+	const router = useRouter();
+	const { locale: activeLocale } = router;
+	const { t } = useTranslation("common");
+
+	useEffect(() => {
+		var dir = router.locale == "fa" ? "rtl" : "ltr";
+		let lang = router.locale == "fa" ? "fa" : "en";
+		document.querySelector("body").setAttribute("dir", dir);
+		document.querySelector("body").setAttribute("lang", lang);
+	}, [router.locale]);
 
 	useEffect(() => {
 		if (loginStatus === "success") {
@@ -38,7 +50,7 @@ function NavbarDropDown({ isUserLoggedIn, user }) {
 							data-bs-toggle='dropdown'
 							aria-expanded='false'
 						>
-							<div className='d-flex align-align-items-center justify-content-center gap-2'>
+							<div className='d-flex align-items-center justify-content-center gap-2'>
 								{user && (
 									<Image
 										src={user.avatar}
@@ -51,15 +63,24 @@ function NavbarDropDown({ isUserLoggedIn, user }) {
 								<span>{user?.name}</span>
 							</div>
 						</button>
-						<ul className='dropdown-menu w-100 p-0'>
+						<ul
+							className='dropdown-menu w-100 p-0'
+							style={
+								activeLocale === "en"
+									? { textAlign: "left" }
+									: { textAlign: "right" }
+							}
+						>
 							<li className='p-1'>
 								<Link href={`/${storage?.userInfo?.username}`}>
-									<a className='text-decoration-none text-dark'>پروفایل</a>
+									<a className='text-decoration-none text-dark'>{t("profile")}</a>
 								</Link>
 							</li>
 							<li className='p-1'>
 								<Link href={`/${storage?.userInfo?.username}/edit`}>
-									<a className='text-decoration-none text-dark'>ویرایش پروفایل</a>
+									<a className='text-decoration-none text-dark'>
+										{t("edit_profile")}
+									</a>
 								</Link>
 							</li>
 							<hr className='m-0' />
@@ -68,7 +89,7 @@ function NavbarDropDown({ isUserLoggedIn, user }) {
 									className='btn btn-outline-danger w-100'
 									onClick={() => setIsLogoutModalOpen(true)}
 								>
-									خروج
+									{t("exit")}
 								</button>
 							</li>
 						</ul>
@@ -78,7 +99,7 @@ function NavbarDropDown({ isUserLoggedIn, user }) {
 						className='btn-main'
 						onClick={() => !isUserLoggedIn && setIsLoginModalOpen(true)}
 					>
-						ورود به حساب کاربری
+						{t("login")}
 					</button>
 				)}
 			</NavbarDropDownWrapper>
