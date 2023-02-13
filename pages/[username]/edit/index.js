@@ -11,8 +11,11 @@ import { useUploadImage } from "../../../hooks/User/useResource";
 import { AppContext } from "../../../context/AppContextProvider";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { useUpdatePassword } from "../../../hooks/User/useProfile";
 import { useAuth } from "../../../hooks/Auth/useAuth";
+
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const socialMedias = [
 	{
@@ -78,6 +81,7 @@ const EditProfile = ({ data }) => {
 	const router = useRouter();
 	const { isUserLoggedIn, isLoading: isCheckUserLoggedIn } = useAuth();
 	const { storage, setStorage } = useContext(AppContext);
+	const { t } = useTranslation("common");
 
 	useEffect(() => {
 		if (Cookies.get("_s") === "{}") router.push(`/${router.query.username}`);
@@ -233,7 +237,8 @@ const EditProfile = ({ data }) => {
 								{/* avatar and name*/}
 								<div className='basic-information-wrapper first-field-secion section container'>
 									<h2>
-										ویرایش <span className='color-orange'>اطلاعات</span>
+										{t("edit")}{" "}
+										<span className='color-orange'>{t("information")}</span>
 									</h2>
 									<div className='basic-information'>
 										<div className='basic-information-first'>
@@ -296,10 +301,12 @@ const EditProfile = ({ data }) => {
 													type='text'
 													className='form-control'
 													id='firstName_fas'
-													placeholder='نام به فارسی'
+													placeholder={t("name_fa")}
 													name='firstName_fas'
 												/>
-												<label htmlFor='firstName_fas'>نام به فارسی</label>
+												<label htmlFor='firstName_fas'>
+													{t("name_fa")}
+												</label>
 											</div>
 											<div className='form-floating mb-3'>
 												<Field
@@ -307,21 +314,21 @@ const EditProfile = ({ data }) => {
 													type='text'
 													className='form-control'
 													id='firstName_en'
-													placeholder='نام به انگلیسی'
+													placeholder={t("name_en")}
 													name='firstName_en'
 												/>
-												<label htmlFor='firstName_en'>نام به انگلیسی</label>
+												<label htmlFor='firstName_en'>{t("name_en")}</label>
 											</div>
 											<div className='form-floating mb-3'>
 												<Field
 													type='text'
 													className='form-control'
 													id='lastName_fas'
-													placeholder='نام خانوادگی به فارسی'
+													placeholder={t("family_fa")}
 													name='lastName_fas'
 												/>
 												<label htmlFor='lastName_fas'>
-													نام خانوادگی به فارسی
+													{t("family_fa")}
 												</label>
 											</div>
 											<div className='form-floating mb-3'>
@@ -330,11 +337,11 @@ const EditProfile = ({ data }) => {
 													type='text'
 													className='form-control'
 													id='lastName_en'
-													placeholder='نام خانوادگی به انگلیسی'
+													placeholder={t("family_en")}
 													name='lastName_en'
 												/>
 												<label htmlFor='lastName_en'>
-													نام خانوادگی به انگلیسی
+													{t("family_en")}
 												</label>
 											</div>
 											<div className='form-floating mb-3'>
@@ -349,11 +356,11 @@ const EditProfile = ({ data }) => {
 															description_fas: e.target.value,
 														}))
 													}
-													placeholder='توضیحات به فارسی'
+													placeholder={t("description_fa")}
 													name='description_fas'
 												/>
 												<label htmlFor='description_fas'>
-													توضیحات به فارسی
+													{t("description_fa")}
 												</label>
 											</div>
 											<div className='form-floating mb-3'>
@@ -369,11 +376,11 @@ const EditProfile = ({ data }) => {
 															description_en: e.target.value,
 														}))
 													}
-													placeholder='توضییحات به انگلیسی'
+													placeholder={t("description_en")}
 													name='description_en'
 												/>
 												<label htmlFor='description_en'>
-													توضییحات به انگلیسی
+													{t("description_en")}
 												</label>
 											</div>
 										</div>
@@ -382,34 +389,36 @@ const EditProfile = ({ data }) => {
 								{/* email and phone number */}
 								<div className='seconde-field-secion section container'>
 									<h2>
-										ویرایش <span className='color-orange'>شماره تماس</span> و
-										ایمیل
+										{t("edit")}{" "}
+										<span className='color-orange'>{t("phone_number")}</span> ,{" "}
+										{t("email")}
 									</h2>
 									<div className='form-floating mb-3 input-wrapper'>
 										<Field
 											type='email'
 											className='form-control'
 											id='email'
-											placeholder='ایمیل'
+											placeholder={t("email")}
 											name='email'
 										/>
-										<label htmlFor='email'>ایمیل </label>
+										<label htmlFor='email'>{t("email")}</label>
 									</div>
 									<div className='form-floating mb-3 input-wrapper'>
 										<Field
 											type='text'
 											className='form-control'
 											id='phoneNumber'
-											placeholder='شماره تماس'
+											placeholder={t("phone_number")}
 											name='phoneNumber'
 										/>
-										<label htmlFor='phoneNumber'>شماره تماس</label>
+										<label htmlFor='phoneNumber'>{t("phone_number")}</label>
 									</div>
 								</div>
 								{/* social medias */}
 								<div className='third-field-secion section container'>
 									<h2>
-										ویرایش <span className='color-orange'>شبکه های مجازی</span>
+										{t("edit")}{" "}
+										<span className='color-orange'>{t("social_medias")}</span>
 									</h2>
 									<div className='social-medias mt-3'>
 										{socialMedias.map((sm, i) => (
@@ -447,7 +456,7 @@ const EditProfile = ({ data }) => {
 									backgroundColor='#14a76c'
 									isDisabled={isLoading}
 								>
-									<span>ذخیره</span>
+									<span>{t("save")}</span>
 								</FloatingButton>
 							</Form>
 						)}
@@ -466,7 +475,8 @@ const EditProfile = ({ data }) => {
 								{/* updatePassword */}
 								<div className='password-secion section container'>
 									<h2>
-										<span className='color-orange'>گذرواژه</span> ویرایش
+										<span className='color-orange'>{t("password")}</span>{" "}
+										{t("edit")}
 									</h2>
 
 									<div className='form-floating mb-3 input-wrapper'>
@@ -481,17 +491,17 @@ const EditProfile = ({ data }) => {
 												}));
 											}}
 											value={values.newPassword}
-											placeholder='پسورد جدید'
+											placeholder={t("new_password")}
 											name='newPassword'
 										/>
-										<label htmlFor='newPassword'>پسورد جدید</label>
+										<label htmlFor='newPassword'>{t("new_password")}</label>
 									</div>
 									<div className='form-floating mb-3 input-wrapper'>
 										<input
 											type='password'
 											className='form-control'
 											id='confirmPassword'
-											placeholder='تایید پسورد'
+											placeholder={t("confirm_password")}
 											onChange={(e) => {
 												setValues((prev) => ({
 													...prev,
@@ -501,7 +511,9 @@ const EditProfile = ({ data }) => {
 											value={values.confirmPassword}
 											name='confirmPassword'
 										/>
-										<label htmlFor='confirmPassword'>تایید پسورد</label>
+										<label htmlFor='confirmPassword'>
+											{t("confirm_password")}
+										</label>
 									</div>
 									<div className='form-floating mb-3 input-wrapper'>
 										<Button
@@ -514,7 +526,7 @@ const EditProfile = ({ data }) => {
 												values.confirmPassword === ""
 											}
 										>
-											بروزرسانی
+											{t("update")}
 										</Button>
 									</div>
 								</div>
@@ -535,7 +547,7 @@ export async function getServerSideProps(context) {
 	} catch (error) {}
 
 	return {
-		props: { data }, // will be passed to the page component as props
+		props: { data, ...(await serverSideTranslations(context.locale, ["common"])) },
 	};
 }
 export default EditProfile;

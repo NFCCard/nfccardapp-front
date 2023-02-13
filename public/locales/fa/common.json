@@ -9,5 +9,20 @@
 	"edit_profile": "ویرایش پروفایل",
 	"exit": "خروج",
 	"user_name": "نام کاربری",
-	"password": "رمز عبور"
+	"password": "رمز عبور",
+	"new_password": "رمز عبور جدید",
+	"confirm_password": "تایید رمز عبور",
+	"profile_exit": "از حساب کاربری خارج می شوید؟",
+	"yes": "بله",
+	"no": "خیر",
+	"edit": "ویرایش",
+	"information": "اطلاعات",
+	"name_fa": "نام به فارسی",
+	"family_fa": "نام خانوادگی به فارسی",
+	"description_fa": "توضیحات به فارسی",
+	"name_en": "نام به انگلیسی",
+	"family_en": "نام خانوادگی به انگلیسی",
+	"description_en": "توضیحات به انگلیسی",
+	"save": "ذخیره",
+	"update": "بروزرسانی"
 }

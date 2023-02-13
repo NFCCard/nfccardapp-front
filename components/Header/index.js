@@ -41,8 +41,6 @@ const Header = () => {
 		}
 	}, [isUserLoggedIn, data]);
 
-	console.log(user);
-
 	return (
 		<div className='w-100 px-5 py-1 d-flex flex-column-reverse align-items-center flex-md-row justify-content-md-between '>
 			<div className='d-flex align-items-center'>
