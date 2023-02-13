@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
-import { Modal, LoginModal } from "components";
+import { LoginModal, CustomModal } from "components";
 import { NavbarDropDownWrapper } from "./styles";
 import { useLogin } from "hooks/Auth/useAuth";
 import Link from "next/link";
@@ -103,15 +103,15 @@ function NavbarDropDown({ isUserLoggedIn, user }) {
 					</button>
 				)}
 			</NavbarDropDownWrapper>
-			<Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)}>
+			<CustomModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)}>
 				<LoginModal
 					loginHandler={(val) => loginHandler(val)}
 					isLoginLoading={loginIsLoading}
 				/>
-			</Modal>
-			<Modal isOpen={isLogoutModalOpen} onClose={() => setIsLogoutModalOpen(false)}>
+			</CustomModal>
+			<CustomModal isOpen={isLogoutModalOpen} onClose={() => setIsLogoutModalOpen(false)}>
 				<LogoutModal onClose={() => setIsLogoutModalOpen(false)} onLogout={logoutHandler} />
-			</Modal>
+			</CustomModal>
 		</>
 	);
 }

@@ -18,6 +18,7 @@ import mamad from "public/assets/images/mamad.jpg";
 import saba from "public/assets/images/saba.jpg";
 import sara from "public/assets/images/sara.jpg";
 import * as animationData2 from "public/assets/lf30_editor_h64eijlm.json";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { useAuth, useLogin } from "hooks/Auth/useAuth";
 import Cookies from "js-cookie";
@@ -29,6 +30,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { constants } from "values";
 import Head from "next/head";
 import { AppContext } from "../context/AppContextProvider";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 const Home = () => {
@@ -79,6 +81,7 @@ const Home = () => {
 	const { isUserLoggedIn } = useAuth();
 	const { storage, setStorage } = useContext(AppContext);
 	const router = useRouter();
+	const { t } = useTranslation("common");
 
 	useEffect(() => {
 		let dir = router.locale == "fa" ? "rtl" : "rtl";
@@ -107,7 +110,7 @@ const Home = () => {
 	return (
 		<>
 			<Head>
-				<title>NFC Card | کارت هوشمند NFC</title>
+				<title>{t("nfc_title")}</title>
 			</Head>
 			<div className='Hero'>
 				<div className='container info-wrapper'>
@@ -290,5 +293,27 @@ const Home = () => {
 		</>
 	);
 };
+
+export async function getServerSideProps(context) {
+	let data = null;
+	let notFound = false;
+	try {
+		data = await api.get.getSingleProfile({ username: context.query.username });
+	} catch (error) {
+		if (error.response?.data.code === 9995) {
+			notFound = true;
+		}
+	}
+	if (notFound) {
+		return {
+			redirect: {
+				destination: "/404",
+			},
+		};
+	}
+	return {
+		props: { data, ...(await serverSideTranslations(context.locale, ["common"])) },
+	};
+}
 
 export default Home;
