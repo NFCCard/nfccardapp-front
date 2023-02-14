@@ -11,7 +11,7 @@ export async function getServerSideProps(ctx) {
 			lastmod: new Date().toISOString(),
 		}));
 	} catch (error) {
-		console.log(error);
+		window.alert(error);
 	}
 
 	//  fetch all the post and pass into getServerSideSitemap. but make sure your allPasts in array.
