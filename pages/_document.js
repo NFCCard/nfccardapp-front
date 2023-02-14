@@ -8,13 +8,11 @@ export default function Document() {
 				<link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
 				<link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
 				<link rel='manifest' href='/site.webmanifest' />
-				<meta
-					name='description'
-					content='خرید کارت ویزیت هوشمند با استفاده تکنولوژی nfc 
-با پروفایل کاربری انحصاری '
-				/>
 
-				<meta itemProp='name' content='NFC Card | صفحه اصلی' />
+				<meta
+					itemProp='name'
+					content='NFC Card | پروفایل ساز | خرید بیزینس کارت هوشمند| خرید کارت nfc'
+				/>
 				<meta
 					itemProp='description'
 					content='خرید کارت ویزیت هوشمند با استفاده تکنولوژی nfc 
@@ -24,7 +22,10 @@ export default function Document() {
 
 				<meta property='og:url' content='http://nfccardapp.ir' />
 				<meta property='og:type' content='website' />
-				<meta property='og:title' content='NFC Card | صفحه اصلی' />
+				<meta
+					property='og:title'
+					content='NFC Card | پروفایل ساز | خرید بیزینس کارت هوشمند| خرید کارت nfc'
+				/>
 				<meta
 					property='og:description'
 					content='خرید کارت ویزیت هوشمند با استفاده تکنولوژی nfc 
@@ -33,7 +34,10 @@ export default function Document() {
 				<meta property='og:image' content='http://nfccardapp.ir/favicon.ico' />
 
 				<meta name='twitter:card' content='summary_large_image' />
-				<meta name='twitter:title' content='NFC Card | صفحه اصلی' />
+				<meta
+					name='twitter:title'
+					content='NFC Card | پروفایل ساز | خرید بیزینس کارت هوشمند| خرید کارت nfc'
+				/>
 				<meta
 					name='twitter:description'
 					content='خرید کارت ویزیت هوشمند با استفاده تکنولوژی nfc 
