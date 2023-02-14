@@ -1,13 +1,25 @@
 import { Field, Form, Formik } from "formik";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { loginValidation } from "../../validations/loginValidation";
 import { Button } from "../index";
+import { useTranslation } from "next-i18next";
 
 const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 	const [isLogin, setIsLogin] = useState(true);
 	const [isReset, setIsReset] = useState(false);
 	const [showPass, setShowPass] = useState(false);
 	const [isTypingPass, setIsTypingPass] = useState(false);
+	const router = useRouter();
+	const { locale: activeLocale } = router;
+	const { t } = useTranslation("common");
+
+	useEffect(() => {
+		var dir = router.locale == "fa" ? "rtl" : "ltr";
+		let lang = router.locale == "fa" ? "fa" : "en";
+		document.querySelector("body").setAttribute("dir", dir);
+		document.querySelector("body").setAttribute("lang", lang);
+	}, [router.locale]);
 
 	const ShowPassword = (show) => {
 		return (
@@ -40,7 +52,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 			<div className='modal-body'>
 				{/* Login form */}
 				<div className='login-form' style={isLogin ? { left: "0" } : { left: "100%" }}>
-					<h4>ورود به حساب کاربری</h4>
+					<h4>{t("login")}</h4>
 
 					<Formik
 						validationSchema={loginValidation}
@@ -54,7 +66,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 								<div className='form-floating input-wrapper w-100'>
 									<input
 										className='form-control '
-										placeholder='نام کاربری'
+										placeholder={t("user_name")}
 										autoComplete='off'
 										onChange={(e) =>
 											setValues((prev) => ({
@@ -66,7 +78,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 										type='text'
 										style={{ direction: "ltr" }}
 									/>
-									<label htmlFor='username'>نام کاربری</label>
+									<label htmlFor='username'>{t("user_name")}</label>
 
 									{errors.username && touched.username && (
 										<span className='input-error'>{errors.username}</span>
@@ -82,7 +94,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 											}))
 										}
 										value={values.password}
-										placeholder='پسورد'
+										placeholder={t("user_name")}
 										autoComplete='off'
 										type={showPass ? "text" : "password"}
 										style={{ direction: "ltr" }}
@@ -90,7 +102,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 									{values.password !== "" ? (
 										<ShowPassword show={showPass} />
 									) : null}
-									<label htmlFor='password'>پسورد</label>
+									<label htmlFor='password'>{t("password")}</label>
 
 									{errors.password && touched.password && (
 										<span className='input-error'>{errors.password}</span>
@@ -115,7 +127,7 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 									type='submit'
 									id='loginBtn'
 								>
-									ورود
+									{t("login")}
 								</Button>
 							</Form>
 						)}
@@ -174,4 +186,5 @@ const LoginModal = ({ iconButton = true, loginHandler, isLoginLoading }) => {
 		</div>
 	);
 };
+
 export default LoginModal;

@@ -5,7 +5,7 @@ import {
 	LanguageChanger,
 	Loading,
 	LoginModal,
-	Modal,
+	CustomModal,
 } from "components";
 import { useAuth, useLogin } from "hooks/Auth/useAuth";
 import { useTranslation } from "next-i18next";
@@ -187,57 +187,15 @@ const Profile = ({ data }) => {
 						) : null}
 					</main>
 
-					{/* {storage.userInfo && router.query.username === storage.userInfo.username && (
-						<>
-							<FloatingButton
-								onClick={floatingButtonOnClick}
-								position={
-									activeLocale === "en"
-										? {
-												top: "unset",
-												left: "30px",
-												right: "unset",
-												bottom: "30px",
-										  }
-										: {
-												top: "unset",
-												left: "unset",
-												right: "30px",
-												bottom: "30px",
-										  }
-								}
-								backgroundColor='#ff652f'
-							>
-								<i className='fas fa-pen'></i>
-							</FloatingButton>
-
-							<Modal
-								isOpen={isLoginModalOpen}
-								disableBackdropClose
-								onClose={() => setIsLoginModalOpen(false)}
-							>
-								<LoginModal
-									loginHandler={(val) => loginHandler(val)}
-									isLoginLoading={loginIsLoading}
-								/>
-							</Modal>
-						</>
-					)} */}
-					{/* {!isUserLoggedIn && (
-						<FloatingButton
-							onClick={() => setIsLoginModalOpen(true)}
-							position={{ top: "50%", left: "auto", right: "-30px", bottom: "0" }}
-							backgroundColor='#ff652f'
-						>
-							<i className='fas fa-user usericon'></i>
-						</FloatingButton>
-					)} */}
-					<Modal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)}>
+					<CustomModal
+						isOpen={isLoginModalOpen}
+						onClose={() => setIsLoginModalOpen(false)}
+					>
 						<LoginModal
 							loginHandler={(val) => loginHandler(val)}
 							isLoginLoading={loginIsLoading}
 						/>
-					</Modal>
+					</CustomModal>
 				</>
 			) : (
 				<Loading />

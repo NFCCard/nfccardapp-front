@@ -6,9 +6,9 @@ export default axios.create({
 	baseURL: config.BASE_URL,
 	headers: {
 		Authorization: `${
-			Cookies.get(constants.STORAGE)
+			Cookies.get(constants.STORAGE.accessToken)
 				? `Bearer ${JSON.parse(Cookies.get(constants.STORAGE)).accessToken}`
-				: "1"
+				: ""
 		}`,
 		Accept: "application/json",
 	},

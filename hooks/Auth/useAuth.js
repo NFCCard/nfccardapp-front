@@ -1,6 +1,7 @@
 import api from "api";
 import { Toastify } from "components";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { constants } from "values";
@@ -25,6 +26,8 @@ const useAuth = () => {
 };
 const useLogin = () => {
 	const { storage, setStorage } = useContext(AppContext);
+	const router = useRouter();
+	const { locale: activeLocale } = router;
 
 	return useMutation(api.post.login, {
 		onError: (error, variables, context) => {
@@ -41,9 +44,20 @@ const useLogin = () => {
 				userInfo: data.user,
 			}));
 			Toastify("success", "با موفقیت وارد شدید");
-			setTimeout(() => {
-				window.location.replace(`/${JSON.parse(Cookies.get("_s"))?.userInfo?.username}`);
-			}, 2000);
+
+			if (activeLocale === "en") {
+				setTimeout(() => {
+					window.location.replace(
+						`/en/${JSON.parse(Cookies.get("_s"))?.userInfo?.username}`
+					);
+				}, 2000);
+			} else {
+				setTimeout(() => {
+					window.location.replace(
+						`/${JSON.parse(Cookies.get("_s"))?.userInfo?.username}`
+					);
+				}, 2000);
+			}
 		},
 	});
 };
